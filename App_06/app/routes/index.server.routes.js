@@ -8,4 +8,9 @@ module.exports = function(app) {
 
 	// Mount the 'index' controller's 'render' method
 	app.get('/', index.render);
+    
+    
+    var demo = require('../controllers/demo.server.controller');
+    
+    app.get('/demo',demo.render);
 };

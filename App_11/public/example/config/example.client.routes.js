@@ -1,0 +1,12 @@
+angular.module('example').config(['$routeProvider',
+function($routeProvider) {
+$routeProvider.
+when('/example', {
+templateUrl: 'example/views/example.client.view.html',
+controller:'ExampleController'    
+}).
+otherwise({
+redirectTo: '/'
+});
+}
+]);

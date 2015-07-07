@@ -1,0 +1,9 @@
+{
+  "name": "InsertDocument",
+  "author": "Runnable",
+  "version": "0.0.1",
+  "dependencies": {
+    "mongodb": "*"
+   }
+}
+ 

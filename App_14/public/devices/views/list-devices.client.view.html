@@ -1,0 +1,22 @@
+<!-- The list articles view -->
+<section data-ng-controller="DevicesController" data-ng-init="find()">
+	<h1>Devices</h1>
+    <a href="/#!/">Home</a>
+	<ul>
+		<!-- The list of article -->
+		<li data-ng-repeat="device in devices">
+			<a data-ng-href="#!/devices/{{device._id}}" data-ng-bind="device.did"></a>
+			<br>
+			<small data-ng-bind="device.created | date:'medium'"></small>
+			<small>/</small>
+			<small data-ng-bind="device.creator.fullName"></small>
+			<p data-ng-bind="device.name"></p>
+		</li>
+        
+       
+	</ul>
+	<!-- If there are no articles in the list, suggest the user's create a new article -->
+	<div data-ng-hide="!devices || devices.length">
+		No device yet, why don't you <a href="/#!/devices/create">create one</a>?
+	</div>
+</section>

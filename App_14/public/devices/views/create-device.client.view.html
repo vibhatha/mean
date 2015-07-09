@@ -1,0 +1,51 @@
+<!-- The create article view -->
+<section data-ng-controller="DevicesController">
+	<h1>New Article</h1>
+	<!-- The new article form -->
+    <a href="/#!/">Home</a>
+	<form data-ng-submit="create()" novalidate>
+		<div>
+			<label for="did">Device ID</label>
+			<div>
+				<input type="text" data-ng-model="did" id="did" placeholder="Device Id" required>
+			</div>
+		</div>
+		<div>
+			<label for="name">Name</label>
+			<div>
+				<input type="text" data-ng-model="name" id="name"  placeholder="Name"/>
+			</div>
+		</div>
+        <div>
+			<label for="type">Type</label>
+			<div>
+				<input type="text" data-ng-model="type" id="type" placeholder="Type"/>
+			</div>
+		</div>
+        <div>
+			<label for="model">Model</label>
+			<div>
+				<input type="text" data-ng-model="model" id="model" placeholder="Model"/>
+			</div>
+		</div>
+         <div>
+			<label for="smartplugs">Smart Plug</label>
+			<div>
+				<select data-ng-model="smartplugs" ng-options="sm.name for sm in smartpluglist"></select>
+			</div>
+		</div>
+        
+       
+		<div>
+			<input type="submit">
+		</div>
+		<!-- The error message element -->
+		<div data-ng-show="error">
+			<strong data-ng-bind="error"></strong>
+		</div>
+	</form>
+</section>
+
+<script type="text/javascript">
+		window.selectedSmartPlug = <%- smartplugs || 'null' %>;
+</script>

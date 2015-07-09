@@ -1,0 +1,40 @@
+<!-- The edit article view -->
+<section data-ng-controller="SmartPlugsController" data-ng-init="findOne()">
+	<h1>Edit Article</h1>
+     <a href="/#!/">Home</a>
+	<!-- The edited article form -->
+	<form data-ng-submit="update()" novalidate>
+		<div>
+			<label for="sid">Device</label>
+			<div>
+				<input type="text" data-ng-model="smartplug.sid" id="sid" placeholder="SID" required>
+			</div>
+		</div>
+		<div>
+			<label for="name">Name</label>
+			<div>
+				<input type="text" data-ng-model="smartplug.name" id="name" placeholder="Name"/>
+			</div>
+		</div>
+        <div>
+			<label for="type">Name</label>
+			<div>
+				<input type="text" data-ng-model="smartplug.type" id="type" placeholder="Type"/>
+			</div>
+		</div>
+        <div>
+			<label for="device">Name</label>
+			<div>
+				<input type="text" data-ng-model="smartplug.device" id="device" placeholder="Device"/>
+			</div>
+		</div>
+		<div>
+			<input type="submit" value="Update">
+		</div>
+		<!-- The error message element -->
+		<div data-ng-show="error">
+			<strong data-ng-bind="error"></strong>
+		</div>
+	</form>
+	</div>
+</section>

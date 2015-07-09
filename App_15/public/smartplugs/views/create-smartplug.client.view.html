@@ -1,0 +1,40 @@
+<!-- The create article view -->
+<section data-ng-controller="SmartPlugsController">
+    
+	<h1>New Article</h1>
+     <a href="/#!/">Home</a>
+	<!-- The new article form -->
+	<form data-ng-submit="create()" novalidate>
+		<div>
+			<label for="sid">Smart Plug ID</label>
+			<div>
+				<input type="text" data-ng-model="sid" id="sid" placeholder="Smart Plug Id" required>
+			</div>
+		</div>
+		<div>
+			<label for="name">Name</label>
+			<div>
+				<input type="text" data-ng-model="name" id="name"  placeholder="Name"/>
+			</div>
+		</div>
+        <div>
+			<label for="type">Type</label>
+			<div>
+				<input type="text" data-ng-model="type" id="type" placeholder="Type"/>
+			</div>
+		</div>
+        <div>
+			<label for="device">Device</label>
+			<div>
+				<input type="text" data-ng-model="device" id="device" placeholder="Device"/>
+			</div>
+		</div>
+		<div>
+			<input type="submit">
+		</div>
+		<!-- The error message element -->
+		<div data-ng-show="error">
+			<strong data-ng-bind="error"></strong>
+		</div>
+	</form>
+</section>

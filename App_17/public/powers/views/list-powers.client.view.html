@@ -1,0 +1,22 @@
+<!-- The list articles view -->
+<section data-ng-controller="PowersController" data-ng-init="find()">
+	<h1>Powers</h1>
+    <a href="/#!/">Home</a>
+	<ul>
+		<!-- The list of article -->
+		<li data-ng-repeat="power in powers">
+			<a data-ng-href="#!/powers/{{power._id}}" data-ng-bind="power.pid"></a>
+			<br>
+			<small data-ng-bind="power.created | date:'medium'"></small>
+			<small>/</small>
+			<small data-ng-bind="power.creator.fullName"></small>
+			<p data-ng-bind="power.name"></p>
+		</li>
+        
+       
+	</ul>
+	<!-- If there are no articles in the list, suggest the user's create a new article -->
+	<div data-ng-hide="!powers || powers.length">
+		No power yet, why don't you <a href="/#!/powers/create">create one</a>?
+	</div>
+</section>

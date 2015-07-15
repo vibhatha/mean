@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org">
+<head>
+	<!-- Use the 'title' property to render a page title  -->
+	<title><%= title %></title>
+    
+    <!--UI Imports START-->
+    
+    <meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="/css/demo.css" rel="stylesheet">
+<link href="/css/slidemenu.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="/js/jquery.slidemenu.js"></script>
+    
+    <!--UI Imports END-->
+    
+    
+   
+</head>
+<body>
+    
+           <section  ng-view>
+    
+    </section>
+    
+    
+    <div ng-controller="ExampleController" class="slide-menu horizontal-open">
+  <ul class="menu-items">
+    <li class="menu-item" data-target="#Panel1" title="Panel 1">
+      <div class="menu-icon"> <i class="fa fa-book"></i> </div>
+      <div class="menu-content"> <span>Panel 1</span> </div>
+      <div class="menu-close"> <i class="fa fa-times"></i> </div>
+    </li>
+    <li id="CalendarIcon" class="menu-item" data-target="#Panel2" title="Panel 2">
+      <div class="menu-icon"> <i class="fa fa-calendar"></i> </div>
+      <div class="menu-content"> <span>Panel 2</span> </div>
+      <div class="menu-close"> <i class="fa fa-times"></i> </div>
+    </li>
+    <li id="ShoppingIcon" class="menu-item" data-target="#Panel3" title="Panel 3">
+      <div class="menu-icon"> <i class="fa fa-folder-open"></i> </div>
+      <div class="menu-content"> <span>Panel 3</span> </div>
+      <div class="menu-close"> <i class="fa fa-times"></i> </div>
+    </li>
+    <li id="SearchIcon" class="menu-item" data-target="#Panel4" title="Panel 4">
+      <div class="menu-icon"> <i class="fa fa-search"></i> </div>
+      <div class="menu-content"> <span>Panel 4</span> </div>
+      <div class="menu-close"> <i class="fa fa-times"></i> </div>
+    </li>
+    <li id="BugIcon" class="menu-item" data-target="#Panel5" title="Panel 5">
+      <div class="menu-icon"> <i class="fa fa-bug"></i> </div>
+      <div class="menu-content"> <span>Panel 5</span> </div>
+      <div class="menu-close"> <i class="fa fa-times"></i> </div>
+    </li>
+  </ul>
+  <div class="menu-panels">
+    <div data-ng-show="authentication.user"  id="Panel1" class="menu-panel">
+      <h1>Hi </h1>
+        <span data-ng-bind="authentication.user.fullName"></span>
+        <span data-ng-show="authentication.user"><a href="/signout">Signout</a></span>
+        <span data-ng-show="authentication.user"><a href="/">Home</a></span>
+    </div>
+    <div data-ng-show="!authentication.user" id="Panel2" class="menu-panel">
+      <h1>Panel 2 Contents</h1>
+        <a href="/signup">Signup</a>
+        <a href="/signin">Signin</a>
+    </div>
+    <div data-ng-show="authentication.user" id="Panel3" class="menu-panel">
+      <h1>Panel 3 Contents</h1>
+                    <a href="/#!/articles">List Articles</a>
+					<a href="/#!/articles/create">Create Article</a>
+					<a href="/#!/smartplugs">List Smart Plugs</a>
+					<a href="/#!/smartplugs/create">Create Smart Plug</a>
+                    <a href="/#!/devices">List Devices</a>
+                    <a href="/#!/devices/create">Create Device</a>
+                    <a href="/#!/powers">List Powers</a>
+                    <a href="/#!/powers/create">Create Power</a> </div>
+    </div>
+    <div id="Panel4" class="menu-panel">
+      <h1>Panel 4 Contents</h1>
+    </div>
+    <div id="Panel5" class="menu-panel">
+      <h1>Panel 5 Contents</h1>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	$(function() {
+		$(".slide-menu").slidemenu();
+	});
+</script>
+    
+    
+    
+	<!-- Render AngularJS views  -->
+	
+  
+
+   
+
+	<!-- Render the user object -->
+	<script type="text/javascript">
+		window.user = <%- user || 'null' %>;
+	</script>
+    
+    <!--Styling START-->
+    
+    
+    
+    <!--Styling END-->
+    
+    
+    
+    
+    
+	
+	<!-- Load local libraries -->
+	<script type="text/javascript" src="/lib/angular/angular.js"></script>
+	<script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
+	<script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>
+	
+	<!-- Load the articles module -->
+	<script type="text/javascript" src="/articles/articles.client.module.js"></script>
+	<script type="text/javascript" src="/articles/controllers/articles.client.controller.js"></script>
+	<script type="text/javascript" src="/articles/services/articles.client.service.js"></script>
+	<script type="text/javascript" src="/articles/config/articles.client.routes.js"></script>
+    
+    <!-- Load the smartplug module -->
+    <script type="text/javascript" src="/smartplugs/smartplugs.client.module.js"></script>
+	<script type="text/javascript" src="/smartplugs/controllers/smartplugs.client.controller.js"></script>
+	<script type="text/javascript" src="/smartplugs/services/smartplugs.client.service.js"></script>
+	<script type="text/javascript" src="/smartplugs/config/smartplugs.client.routes.js"></script>
+    
+     <!-- Load the device module -->
+    <script type="text/javascript" src="/devices/devices.client.module.js"></script>
+	<script type="text/javascript" src="/devices/controllers/devices.client.controller.js"></script>
+	<script type="text/javascript" src="/devices/services/devices.client.service.js"></script>
+	<script type="text/javascript" src="/devices/config/devices.client.routes.js"></script>
+    
+    <!-- Load the Power module -->
+    <script type="text/javascript" src="/powers/powers.client.module.js"></script>
+	<script type="text/javascript" src="/powers/controllers/powers.client.controller.js"></script>
+	<script type="text/javascript" src="/powers/services/powers.client.service.js"></script>
+	<script type="text/javascript" src="/powers/config/powers.client.routes.js"></script>
+
+	<!-- Load the example module -->
+	<script type="text/javascript" src="/example/example.client.module.js"></script>
+	<script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>
+	<script type="text/javascript" src="/example/config/example.client.routes.js"></script>
+
+	<!-- Load the users module -->
+	<script type="text/javascript" src="/users/users.client.module.js"></script>
+	<script type="text/javascript" src="/users/services/authentication.client.service.js"></script>
+
+	<!-- Bootstrap AngularJS application -->
+	<script type="text/javascript" src="/application.js"></script>
+</body>
+</html>

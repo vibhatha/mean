@@ -1,0 +1,31 @@
+<!-- The example view -->
+<section ng-controller="ExampleController">
+	<!-- If the user is not authenticated show the authentication link -->
+	<div data-ng-show="!authentication.user">
+		<h1>IPower</h1>
+	</div>
+	<!-- Otherwise, show the user details and application links -->
+	<div data-ng-show="authentication.user">
+		<h1>Hello <span data-ng-bind="authentication.user.fullName"></span></h1>	
+		<!--<a href="/signout">Signout</a>
+		<ul>
+			<li><a href="/#!/articles">List Articles</a></li>
+			<li><a href="/#!/articles/create">Create Article</a></li>
+		</ul>
+        
+        <ul>
+			<li><a href="/#!/smartplugs">List Smart Plugs</a></li>
+			<li><a href="/#!/smartplugs/create">Create Smart Plug</a></li>
+		</ul>
+        
+        <ul>
+			<li><a href="/#!/devices">List Devices</a></li>
+			<li><a href="/#!/devices/create">Create Device</a></li>
+		</ul>
+        
+          <ul>
+			<li><a href="/#!/powers">List Powers</a></li>
+			<li><a href="/#!/powers/create">Create Power</a></li>
+		</ul>-->
+	</div>
+</section>

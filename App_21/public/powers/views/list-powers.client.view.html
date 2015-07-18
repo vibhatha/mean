@@ -1,0 +1,42 @@
+<!-- The list articles view -->
+<section data-ng-controller="PowersController" data-ng-init="find()">
+	<h1>Powers</h1>
+    <a href="/#!/">Home</a>
+	<ul>
+		<!-- The list of article -->
+	<!--	<li data-ng-repeat="power in powers">
+			<a data-ng-href="#!/powers/{{power._id}}" data-ng-bind="power.pid"></a>
+			<br>
+			<small data-ng-bind="power.created | date:'medium'"></small>
+			<small>/</small>
+			<small data-ng-bind="power.creator.fullName"></small>
+            <p>Consumption:<p data-ng-bind="power.consumption"></p></p>
+            <p>Smart Plugs:<p data-ng-bind="power.smartplugs"></p></p>
+            <p>Devices:<p data-ng-bind="power.devices"></p></p>
+		</li>-->
+       <!-- -->
+       
+	</ul>
+<div class="table-panel">
+  <table class=" power-table table-border table table-hover table-stripped">
+        
+        <thead><tr><th>Consuption</th><th>Smart Plug</th><th>Device</th><th>Created by</th><th>Created</th><th></th></tr></thead>
+            <tbody><tr data-ng-repeat="power in powers">
+                <td data-ng-bind="power.consumption"></td>
+                <td data-ng-bind="power.smartplugs"></td>
+                <td data-ng-bind="power.devices"></td>
+                <td data-ng-bind="power.creator.fullName"></td>
+                <td data-ng-bind="power.created | date:'medium'"></td>
+                <td><a data-ng-href="#!/powers/{{power._id}}">View</a></td>
+        </tr></tbody>
+        
+    
+    </table>
+
+
+</div>
+	<!-- If there are no articles in the list, suggest the user's create a new article -->
+	<div data-ng-hide="!powers || powers.length">
+		No power yet, why don't you <a href="/#!/powers/create">create one</a>?
+	</div>
+</section>

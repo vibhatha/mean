@@ -1,0 +1,17 @@
+<!-- The article view -->
+<section data-ng-controller="SmartPlugsController" data-ng-init="findOne()">
+     <a href="/#!/">Home</a>
+	<h1 data-ng-bind="smartplug.name"></h1>
+	<!-- Show the editing buttons to the article creator -->
+	<div data-ng-show="authentication.user._id == smartplug.creator._id">
+		<a href="/#!/smartplugs/{{smartplug._id}}/edit">edit</a>
+		<a href="/#!/" data-ng-click="delete();">delete</a>
+	</div>
+	<small>
+		<em>Posted on</em>
+		<em data-ng-bind="smartplug.created | date:'mediumDate'"></em>
+		<em>by</em>
+		<em data-ng-bind="smartplug.creator.fullName"></em>
+	</small>
+	<p data-ng-bind="smartplug.name"></p>
+</section>

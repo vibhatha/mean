@@ -1,0 +1,29 @@
+<!-- The list articles view -->
+<section data-ng-controller="GraphsController">
+	<h1>Graphs</h1>
+    <h3>This is a Graph {{data1}}</h3>
+   
+   <!-- <nvd3 options="options" data="data" class="with-3d-shadow with-transitions"></nvd3>-->
+    <h2>Daily Basis Power Consumption</h2>
+      <div>
+			<label for="devices">Device</label>
+			<div>
+				<select ng-click="getSelectedDeviceForPower()" class="form-control" data-ng-model="devices" ng-options="sm.name for sm in deviceList"></select>
+			</div>
+		</div>
+        
+          <!-- <div>
+			<label for="smartplugs">Smart Plug</label>
+			<div>
+                <select class="form-control" data-ng-model="smartplugs" ng-options="sm.name for sm in smartplugList"></select>
+				
+			</div>
+		</div>-->
+    <nvd3 options="optionsHistorical" data="dataoptionsHistorical" class="with-3d-shadow with-transitions"></nvd3>
+    
+  <!--  <nvd3 options="optionsLineWithFocus" data="dataLineWithFocus" class="with-3d-shadow with-transitions"></nvd3>-->
+    
+    <!--<nvd3 options="optionsSparklinPlus" data="dataSparklinPlus" class="with-3d-shadow with-transitions"></nvd3>-->
+    
+    <nvd3 options="optionsPieChart" data="dataPieChart1" class="with-3d-shadow with-transitions"></nvd3>
+</section>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org">
+<head>
+	<!-- Use the 'title' property to render a page title  -->
+	<title><%= title %></title>
+    
+    <!--UI Imports START-->
+    
+    <meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet" type="text/css" href="/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/menu_topside.css" />
+        <link rel="stylesheet" type="text/css" href="/css/form_style.css" />
+    
+    <!--UI Imports END-->
+    
+    
+   
+</head>
+<body>
+	<!-- Render AngularJS views  -->
+	
+    <div ng-controller="ExampleController"  class="container">
+			<div class="menu-wrap">
+				<nav class="menu-top">
+					<div data-ng-show="authentication.user" class="profile"><img src="/img/user1.png" alt="Matthew Greenberg"/><span data-ng-bind="authentication.user.fullName"></span></div>
+                    <span data-ng-show="authentication.user"><a href="/signout">Signout</a></span>
+                    <span data-ng-show="authentication.user"><a href="/">Home</a></span>
+					<div data-ng-show="!authentication.user" class="icon-list">
+                        
+                        <a href="/signup">Signup</a>
+                        <a href="/signin">Signin</a>	
+						<a href="#"><i class="fa fa-fw fa-star-o"></i></a>
+						<a href="#"><i class="fa fa-fw fa-bell-o"></i></a>
+						<a href="#"><i class="fa fa-fw fa-envelope-o"></i></a>
+						<a href="#"><i class="fa fa-fw fa-comment-o"></i></a>
+					</div>
+				</nav>
+				<nav data-ng-show="authentication.user" class="menu-side">
+					<a href="/#!/articles">List Articles</a>
+					<a href="/#!/articles/create">Create Article</a>
+					<a href="/#!/smartplugs">List Smart Plugs</a>
+					<a href="/#!/smartplugs/create">Create Smart Plug</a>
+                    <a href="/#!/devices">List Devices</a>
+                    <a href="/#!/devices/create">Create Device</a>
+                    <a href="/#!/powers">List Powers</a>
+                    <a href="/#!/powers/create">Create Power</a>
+				</nav>
+                
+                <nav data-ng-show="!authentication.user" class="menu-side">
+                    <a href="/#!/">Home</a>
+					<a href="/#!/">About</a>
+					<a href="/#!/">Contact</a>
+                </nav>
+			</div>
+			<button class="menu-button" id="open-button">Open Menu</button>
+			<div class="content-wrap">
+				<div class="content">
+					<header class="codrops-header">
+                        
+                        
+                        <section  ng-view>
+    
+    </section>
+
+					</header>
+					<!-- Related demos -->
+
+				</div>
+			</div><!-- /content-wrap -->
+		</div><!-- /container -->
+		<script src="/js/classie.js"></script>
+		<script src="/js/main.js"></script>
+   
+
+	<!-- Render the user object -->
+	<script type="text/javascript">
+		window.user = <%- user || 'null' %>;
+	</script>
+    
+    <!--Styling START-->
+    
+    
+    
+    <!--Styling END-->
+    
+    
+    
+    
+    
+	
+	<!-- Load local libraries -->
+	<script type="text/javascript" src="/lib/angular/angular.js"></script>
+	<script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
+	<script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>
+	
+	<!-- Load the articles module -->
+	<script type="text/javascript" src="/articles/articles.client.module.js"></script>
+	<script type="text/javascript" src="/articles/controllers/articles.client.controller.js"></script>
+	<script type="text/javascript" src="/articles/services/articles.client.service.js"></script>
+	<script type="text/javascript" src="/articles/config/articles.client.routes.js"></script>
+    
+    <!-- Load the smartplug module -->
+    <script type="text/javascript" src="/smartplugs/smartplugs.client.module.js"></script>
+	<script type="text/javascript" src="/smartplugs/controllers/smartplugs.client.controller.js"></script>
+	<script type="text/javascript" src="/smartplugs/services/smartplugs.client.service.js"></script>
+	<script type="text/javascript" src="/smartplugs/config/smartplugs.client.routes.js"></script>
+    
+     <!-- Load the device module -->
+    <script type="text/javascript" src="/devices/devices.client.module.js"></script>
+	<script type="text/javascript" src="/devices/controllers/devices.client.controller.js"></script>
+	<script type="text/javascript" src="/devices/services/devices.client.service.js"></script>
+	<script type="text/javascript" src="/devices/config/devices.client.routes.js"></script>
+    
+    <!-- Load the Power module -->
+    <script type="text/javascript" src="/powers/powers.client.module.js"></script>
+	<script type="text/javascript" src="/powers/controllers/powers.client.controller.js"></script>
+	<script type="text/javascript" src="/powers/services/powers.client.service.js"></script>
+	<script type="text/javascript" src="/powers/config/powers.client.routes.js"></script>
+
+	<!-- Load the example module -->
+	<script type="text/javascript" src="/example/example.client.module.js"></script>
+	<script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>
+	<script type="text/javascript" src="/example/config/example.client.routes.js"></script>
+
+	<!-- Load the users module -->
+	<script type="text/javascript" src="/users/users.client.module.js"></script>
+	<script type="text/javascript" src="/users/services/authentication.client.service.js"></script>
+
+	<!-- Bootstrap AngularJS application -->
+	<script type="text/javascript" src="/application.js"></script>
+</body>
+</html>

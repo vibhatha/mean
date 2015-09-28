@@ -1,0 +1,17 @@
+<!-- The article view -->
+<section data-ng-controller="SchedulesController" data-ng-init="findOne()">
+    <a href="/#!/">Home</a>
+	<h1 data-ng-bind="schedule.name"></h1>
+	<!-- Show the editing buttons to the article creator -->
+	<div data-ng-show="authentication.user._id == schedule.creator._id">
+		<a href="/#!/schedules/{{schedule._id}}/edit">edit</a>
+		<a href="/#!/" data-ng-click="delete();">delete</a>
+	</div>
+	<small>
+		<em>Posted on</em>
+		<em data-ng-bind="schedule.created | date:'mediumDate'"></em>
+		<em>by</em>
+		<em data-ng-bind="schedule.creator.fullName"></em>
+	</small>
+	<p data-ng-bind="schedule.name"></p>
+</section>

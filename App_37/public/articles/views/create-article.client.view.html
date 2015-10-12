@@ -1,0 +1,59 @@
+<!-- The create article view -->
+<!--
+<section class="input-group custom-search-form"  data-ng-controller="ArticlesController">
+	<h1>New Article</h1>
+
+    <a href="/#!/">Home</a>
+	<form data-ng-submit="create()" novalidate>
+		<div class="form-group">
+			
+				<input class="form-control"  type="text" data-ng-model="title" id="title" placeholder="Title" required>
+		</div>
+		
+			<div class="form-group" >
+				<textarea  class="form-control" data-ng-model="content" id="content" cols="30" rows="10" placeholder="Content"></textarea>
+			</div>
+		
+		<div class="form-group">
+			<input class="form-control" class=" btn-primary "  type="submit">
+		</div>
+		
+		<div data-ng-show="error">
+			<strong data-ng-bind="error"></strong>
+		</div>
+        
+        
+      
+
+        
+        
+	</form>
+</section>
+-->
+
+
+<section data-ng-controller="ArticlesController">
+ <h1>New Article</h1>
+     <a href="/#!/">Home</a>
+  <md-content md-theme="docs-dark" layout-padding>
+    <form data-ng-submit="create()" novalidate>    
+       <md-input-container>
+      <label>Title</label>
+      <input data-ng-model="title">
+    </md-input-container>
+        
+      <md-input-container flex>
+        <label>Biography</label>
+        <textarea data-ng-model="content" columns="5" rows="3" md-maxlength="150"></textarea>
+      </md-input-container>
+        
+        
+         <md-button class="md-accent md-raised md-hue-1 " type="submit" >Save</md-button>
+    </form>
+  </md-content>
+        
+    
+</section>
+
+
+ 

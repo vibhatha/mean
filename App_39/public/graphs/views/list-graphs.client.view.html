@@ -1,0 +1,143 @@
+<!-- The list articles view -->
+<section data-ng-controller="GraphsController">
+	<h1>Graphs</h1>
+   
+   
+   <!-- <nvd3 options="options" data="data" class="with-3d-shadow with-transitions"></nvd3>-->
+    <h2>Power Consumption</h2>
+   
+  <!--  <div class="row">
+    
+        <div class="col-sm-4">
+        <label>Device:</label> 
+       <select ng-click="" class="form-control" data-ng-model="devices" ng-options="sm.name for sm in deviceList"></select>
+       </div> 
+    
+    </div>
+     
+   <div>-->
+    
+       <div class="row">
+           
+           <div class="col-sm-1">
+           <input type="checkbox" ng-model="start_date_select">
+           </div>   
+      
+        <div class="col-sm-5"><datepicker date-format="yyyy-MM-dd">
+        <input type="datetime" placeholder="Start Date" class="form-control" min-view="date" auto-close="true" date-time ng-model="start_date" view="date">
+        </datepicker>
+            </div>
+              <div class="col-sm-1">
+           <input type="checkbox" ng-model="end_date_select">
+           </div>   
+        <div class="col-sm-5"><datepicker date-format="yyyy-MM-dd">
+        <input type="datetime" placeholder="End Date" class="form-control" min-view="date" auto-close="true" date-time ng-model="end_date"  view="date">
+        </datepicker>
+          
+          </div>
+        
+     
+      
+        
+    </div>
+    <div class="clear">
+       
+      
+    
+    </div>
+  
+ <!-- getSelectedDeviceForPower()  -->
+ 
+        <div class="row">
+            <div class="col-sm-3"><input class="form-control" placeholder="Start Time" ui-timepicker  ng-model="start_time"></div>
+            <div class="col-sm-3"><input class="form-control" placeholder="End Time" ui-timepicker ng-model="end_time"></div>
+       
+    <div class="col-sm-3">
+       
+         <button class="form-control" ng-click="getSearchData()">Search</button>
+       
+       </div>
+       
+       
+       <div class="col-sm-3">
+       
+         <button class="form-control" ng-click=" setGraphDynamically()">Load Graph</button>
+           
+       </div> 
+    
+       </div>    
+   
+    
+    </div>
+   
+     <div ng-hide="year_chart_visible" fusioncharts
+    width="600" 
+    height="400"
+    type="msline"
+    chart="{{attrs}}"
+    categories="{{categories}}"
+    dataset="{{dataset1}}"
+    ></div>  
+    
+    
+      <div ng-hide="month_chart_visible" fusioncharts
+    width="600" 
+    height="400"
+    type="msline"
+    chart="{{attrs2}}"
+    categories="{{categories2}}"
+    dataset="{{dataset2}}"
+    ></div>  
+
+
+    <div ng-hide="day_chart_visible" fusioncharts
+    width="600" 
+    height="400"
+    type="msline"
+    chart="{{attrs3}}"
+    categories="{{categories3}}"
+    dataset="{{dataset3}}"
+    ></div>  
+
+
+    <div ng-hide="day_range_chart_visible" fusioncharts
+    width="600" 
+    height="400"
+    type="msline"
+    chart="{{attrs4}}"
+    categories="{{categories4}}"
+    dataset="{{dataset4}}"
+    ></div>  
+    
+  
+          <!-- <div>
+			<label for="smartplugs">Smart Plug</label>
+			<div>
+                <select class="form-control" data-ng-model="smartplugs" ng-options="sm.name for sm in smartplugList"></select>
+				
+			</div>
+		</div>-->
+  <!--  <nvd3 options="optionsHistorical" data="dataoptionsHistorical" class="with-3d-shadow with-transitions"></nvd3>-->
+    
+  <!--  <nvd3 options="optionsLineWithFocus" data="dataLineWithFocus" class="with-3d-shadow with-transitions"></nvd3>-->
+    
+    <!--<nvd3 options="optionsSparklinPlus" data="dataSparklinPlus" class="with-3d-shadow with-transitions"></nvd3>-->
+    <h3>Overall Power Consumption </h3>
+    <nvd3 options="optionsPieChart" data="dataPieChart1" class="with-3d-shadow with-transitions"></nvd3>
+    
+    
+    
+    
+    
+  <!--   <input type="text" date-time ng-model="start" required="true" view="hours" partial="true">-->
+    
+   <!--  <input ng-model="date" ui-date>--> <!--WOrking 1-->
+    
+ 
+    
+  
+    
+   
+    
+        
+</section>

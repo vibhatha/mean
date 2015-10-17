@@ -1,0 +1,66 @@
+<section data-ng-controller="DashboardsController" data-ng-init="find()">
+  
+     <div class="row">
+    
+        <div class="col-sm-8">
+        
+        <md-button class="md-warn md-raised md-hue-2" ng-click="">Devices</md-button>
+        <!--<md-button class="md-accent md-raised md-hue-1" ng-click="setDataForNgDialogGraphDetails()" 
+        ng-dialog="firstDialogId8" 
+        ng-dialog-controller="DashboardsController"
+        ng-dialog-data="{{jsonData8}}"
+        ng-dialog-class="ngdialog-theme-default"
+        ng-dialog-show-close="false">Analytics</md-button>-->
+        <md-button class="md-accent md-raised md-hue-1" ng-href="/#!/dashboards" >Basic</md-button>   
+        <md-button class="md-raised md-primary" ng-click="">Predictions</md-button> 
+             <md-button class="md-accent md-raised md-hue-4" type="button" 
+        ng-dialog="firstDialogId7"
+        ng-dialog-controller="DashboardsController"
+        ng-dialog-data="{{jsonData5}}"
+        ng-dialog-class="ngdialog-theme-default"
+        ng-dialog-show-close="false">Summary</md-button>
+        </div>   
+        
+       
+        
+        
+        
+        <div class="col-sm-4">
+        
+        </div>
+    
+    
+    </div>
+    
+    
+    <div class="col-sm-8">
+    
+    <md-button ng-click="getMonthGraph()" class="md-primary md-raised md-hue-3" ng-click=""> This Month</md-button>
+    <md-button ng-click="getLastMonthGraph()" class="md-accent md-raised md-hue-1" ng-click=""> last Month</md-button>
+    <md-button ng-click="getTodayGraph()" class="md-warn md-raised md-hue-3" ng-click=""> Today</md-button>
+    <md-button ng-click="getYesterdayGraph()" class="md-primary md-raised md-hue-1" ng-click="">Yesterday</md-button>
+    
+    </div>
+    
+    <div class="col-sm-4"></div>
+    
+    <div>
+     
+    <!--Analytics refers to this month graphs-->
+        <div  ng-hide="analytics" fusioncharts width="600" height="400" type="msline" chart="{{attrs2}}" categories="{{categories2}}"  dataset="{{dataset2}}"></div>
+        <div  ng-hide="analytics" fusioncharts width="600" height="400" type="msline" chart="{{attrs3}}" categories="{{categories3}}"  dataset="{{dataset3}}"></div>
+        
+            <div  ng-hide="todayGraph" fusioncharts width="600" height="400" type="msline" chart="{{attrsToday}}" categories="{{categoriesToday}}"  dataset="{{datasetToday}}"></div>
+        
+            <div  ng-hide="yesterdayGraph" fusioncharts width="600" height="400" type="msline" chart="{{attrsYesterday}}" categories="{{categoriesYesterday}}"  dataset="{{datasetYesterday}}"></div>
+        
+            <div  ng-hide="lastMonthGraph" fusioncharts width="600" height="400" type="msline" chart="{{attrs4}}" categories="{{categories4}}"  dataset="{{dataset4}}"></div>
+        
+         <div  ng-hide="lastMonthGraph" fusioncharts width="600" height="400" type="msline" chart="{{attrs5}}" categories="{{categories5}}"  dataset="{{dataset5}}"></div>
+    
+    
+    
+    
+    </div> 
+    
+</section>    

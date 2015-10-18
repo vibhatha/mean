@@ -1,0 +1,51 @@
+<!-- The edit article view -->
+<!--<section  data-ng-controller="ArticlesController" data-ng-init="findOne()">
+	<h1>Edit Article</h1>
+	
+    <a href="/#!/">Home</a>
+	<form data-ng-submit="update()" novalidate>
+		<div>
+			<label for="title">Title</label>
+			<div>
+				<input class="form-control" type="text" data-ng-model="article.title" id="title" placeholder="Title" required>
+			</div>
+		</div>
+		<div>
+			<label for="content">Content</label>
+			<div>
+				<textarea class="form-control" data-ng-model="article.content" id="content" cols="30" rows="10" placeholder="Content"></textarea>
+			</div>
+		</div>
+		<div>
+			<input class="form-control btn btn-info"  type="submit" value="Update">
+		</div>
+		 The error message element 
+		<div data-ng-show="error">
+			<strong data-ng-bind="error"></strong>
+		</div>
+	</form>
+	</div>
+</section>-->
+
+<section data-ng-controller="ArticlesController" data-ng-init="findOne()">
+ <h1>Edit Article</h1>
+     <a href="/#!/"><md-button class="md-raised md-primary">Home</md-button></a>
+  <md-content md-theme="docs-dark" layout-padding>
+    <form data-ng-submit="update()" novalidate>    
+       <md-input-container>
+      <label>Title</label>
+      <input  data-ng-model="article.title">
+    </md-input-container>
+        
+      <md-input-container flex>
+        <label>Biography</label>
+        <textarea data-ng-model="article.content" columns="5" rows="3" md-maxlength="150"></textarea>
+      </md-input-container>
+        
+        
+         <md-button class="md-accent md-raised md-hue-1 " type="submit" >Update</md-button>
+    </form>
+  </md-content>
+        
+    
+</section>

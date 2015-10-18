@@ -1,0 +1,366 @@
+<section class="gridListdemoBasicUsage gray tabsdemoStaticTabs dialogdemoBasicUsage" data-ng-controller="DashboardsController" data-ng-init="find()">
+
+       
+    <div class="row">
+    
+        <div class="col-sm-8">
+        
+        <md-button ng-href="/#!/dashboards/" class="md-primary md-raised md-hue-2" ng-click="">Basic</md-button>
+      
+        </div>   
+        
+       
+        
+        
+        
+        <div class="col-sm-4">
+        
+        </div>
+    
+    
+    </div>
+    
+    
+
+    <div layout="row">
+  <div class="purple" flex="20">
+  <md-content md-theme="docs-dark" layout-padding>        
+   
+      <div class="table-panel">
+     <table class="table device-table table-hover table-stripped">
+        
+       <thead><tr><th>Device</th></tr></thead> 
+        <tbody>
+        <tr data-ng-repeat="device in deviceList">
+        <td><md-button ng-click="getActivationDetails(device)" class="md-raised md-warn">{{device.name}}</md-button></a></td>
+        </tr>
+        </tbody>  
+    
+    </table>
+    </div>
+  
+        
+   </md-content>      
+    </div>
+  <div flex="80">
+ <md-content class="md-padding green">
+    <md-tabs class="md-accent" md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
+      <md-tab id="tab1">
+        <md-tab-label>Activation Profile</md-tab-label>
+        <md-tab-body>
+    
+    <div layout="row">
+          
+        
+         <div flex="40">
+         
+              <button ng-show="isDeviceSelected" class="form-control btn btn-warn" type="button" 
+        ng-dialog="firstDialogId6"
+        ng-dialog-controller="DashboardsController"
+        ng-dialog-data="{{jsonData4}}"
+        ng-dialog-class="ngdialog-theme-default"
+        ng-dialog-show-close="false">Get Activation Info {{deviceProfile_SelectedDevice.name}}</button>
+                
+            
+        </div> 
+            
+            
+            
+            <div flex="30" >
+         
+            
+            </div>  
+            
+            
+            
+            
+            
+            
+            <div flex="30">
+            
+            
+           
+                
+            </div>      
+                
+    
+        
+            
+            
+    </div>     
+       
+<!--<select class="form-control" data-ng-model="devices_for_time" ng-options="sm._id as sm.name for sm in deviceList">            </select>-->
+            
+     
+            
+        </md-tab-body>
+      </md-tab>
+      <md-tab id="tab2" ng-disabled="data.secondLocked">
+        <md-tab-label>Consumption Profile</md-tab-label>
+        <md-tab-body>
+        Selected Device: {{deviceProfile_SelectedDevice.name}}
+            
+          <div layout="row">
+            
+          <div class="gray0" flex="25" >
+                
+            <h3>Yesterday</h3>
+              <ul ng-repeat="details in mainYesterdayOverallPower" >
+              
+               <h3 ng-show="deviceProfile_SelectedDevice.name==details.device" >{{details.device}}</h3>
+                <h4 ng-show="deviceProfile_SelectedDevice.name==details.device" >{{details.power.toFixed(2)}}</h4> 
+              </ul>
+               
+           <!-- ng-show="details.name==deviceProfile_SelectedDevice.name"-->
+            </div>  
+            
+             
+            
+            
+            
+            
+            
+            <div class="gray1" flex="25">
+             <h3>Today</h3>
+             <ul ng-repeat="details in mainTodayOverallPower" >
+              
+               <h3 ng-show="deviceProfile_SelectedDevice.name==details.device" >{{details.device}}</h3>
+                <h4 ng-show="deviceProfile_SelectedDevice.name==details.device" >{{details.power.toFixed(2)}}</h4> 
+              </ul>
+           
+                
+            </div>      
+            
+             <div class="gray2" flex="25" >
+              <h3>Last Month</h3>
+                 <ul ng-repeat="details in mainLastMonthOverallPower" >
+              
+               <h3 ng-show="deviceProfile_SelectedDevice.name==details.device" >{{details.device}}</h3>
+                <h4 ng-show="deviceProfile_SelectedDevice.name==details.device" >{{details.power.toFixed(2)}}</h4> 
+              </ul>
+            
+            </div>  
+            
+            
+            
+            
+            
+            
+            <div  class="gray3" flex="25">
+            
+            <h3>This Month</h3>
+            <ul ng-repeat="details in mainThisMonthOverallPower" >
+              
+               <h3 ng-show="deviceProfile_SelectedDevice.name==details.device" >{{details.device}}</h3>
+                <h4 ng-show="deviceProfile_SelectedDevice.name==details.device" >{{details.power.toFixed(2)}}</h4> 
+              </ul>
+                
+            </div>         
+            
+            
+         </div>
+           
+        </md-tab-body>
+      </md-tab>
+      <md-tab id="tab3">
+        <md-tab-label>Cost Profile</md-tab-label>
+        <md-tab-body>
+           Selected Device: {{deviceProfile_SelectedDevice.name}}
+            
+            <div layout="row">
+            
+          <div class="green0" flex="25" >
+                
+              <h3>Yesterday</h3>  
+              
+              <ul ng-repeat="details in mainYesterdayOverallPowerCost" >
+              
+               <h3 ng-show="deviceProfile_SelectedDevice.name==details.device" >{{details.device}}</h3>
+                <h4 ng-show="deviceProfile_SelectedDevice.name==details.device" >{{details.cost.toFixed(2)}}</h4> 
+              </ul>
+         
+            
+            </div>  
+            
+            
+            
+            
+            
+            
+            <div class="green1" flex="25">
+            
+            <h3>Today</h3>
+                <ul ng-repeat="details in mainTodayOverallPowerCost" >
+              
+               <h3 ng-show="deviceProfile_SelectedDevice.name==details.device" >{{details.device}}</h3>
+                <h4 ng-show="deviceProfile_SelectedDevice.name==details.device" >{{details.cost.toFixed(2)}}</h4> 
+              </ul>
+           
+                
+            </div>      
+            
+             <div class="green2" flex="25" >
+              <h3>Last Month</h3>
+                 
+                  <ul ng-repeat="details in mainLastMonthOverallPowerCost" >
+              
+               <h3 ng-show="deviceProfile_SelectedDevice.name==details.device" >{{details.device}}</h3>
+                <h4 ng-show="deviceProfile_SelectedDevice.name==details.device" >{{details.cost[0].energy_cost}}</h4> 
+              </ul>
+            
+            </div>  
+            
+            
+            
+            
+            
+            
+            <div  class="green3" flex="25">
+            
+                <h3>This Month</h3>
+             <ul ng-repeat="details in mainThisMonthOverallPowerCost" >
+              
+               <h3 ng-show="deviceProfile_SelectedDevice.name==details.device" >{{details.device}}</h3>
+                <h4 ng-show="deviceProfile_SelectedDevice.name==details.device" >{{details.cost[0].energy_cost}}</h4> 
+              </ul>
+                
+            </div>         
+            
+            
+         </div>
+        </md-tab-body>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+  <!--<div class="md-padding" layout="row" layout-sm="column" layout-align="left center"
+       style="padding-top: 0;">
+    <md-checkbox ng-model="data.secondLocked" aria-label="Disable item two?" style="margin: 5px;">
+      Disable item two?
+    </md-checkbox>
+    <md-checkbox ng-model="data.bottom" aria-label="Align tabs to bottom?" style="margin: 5px;">
+      Align tabs to bottom?
+    </md-checkbox>
+  </div>-->
+
+
+
+</div>
+ <!-- <div class="yellow" flex="20">Second item in row</div>-->
+</div>
+<!--<div layout="column">
+  <div class="red" flex>First item in column</div>
+  <div class="blue"  flex>Second item in column</div>
+</div> -->  
+
+</section>
+<script type="text/ng-template" id="firstDialogId6">
+
+            <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->
+            
+         <h3>Activation of devices</h3>
+    
+<!--<p class="data-passed-through" ng-show="ngDialogData.list">List: <code>{{ngDialogData.list}}</code></p>            
+<p class="data-passed-through" ng-show="ngDialogData.len">Size: <code>{{ngDialogData.len}}</code></p>-->
+    
+       <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>{{ngDialogData.deviceInfo.name}}  ({{ngDialogData.deviceInfo.type}})</h2>
+         
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="cancel()">
+        <md-icon md-svg-src="img/devices/fan.png" aria-label="Close dialog"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content style="max-width:800px;max-height:810px; ">
+    <div class="md-dialog-content">
+      <h2>Activation Profile of Device</h2>
+      <p>
+        <ul ng-repeat="data in ngDialogData.list">
+           
+           <li>{{data.time}}</li>
+    
+        </ul>
+    
+        <ul ng-repeat="block in ngDialogData.active">
+            
+            <ul ng-repeat="value in block">
+           
+           <li>{{value.index}} => {{value.date}}</li>
+    
+        </ul>
+           
+        
+    
+        </ul>
+      </p>
+
+      <img style="margin: auto; max-width: 100%;" alt="Lush mango tree" src="img/devices/tv.png">
+
+      <p>
+        The highest  regions.
+      </p>
+      <p>
+        It origi celebrations, and religious ceremonies.
+      </p>
+    </div>
+  </md-dialog-content>
+
+    
+  
+            
+         <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->  
+
+    </script>
+
+<script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+  <form>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>{{deviceDetails.name}}  ({{deviceDetails.type}})</h2>
+         
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="cancel()">
+        <md-icon md-svg-src="img/devices/fan.png" aria-label="Close dialog"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content style="max-width:800px;max-height:810px; ">
+    <div class="md-dialog-content">
+      <h2>Using .md-dialog-content class that sets the padding as the spec</h2>
+      <p>
+        The mango is a juicy stone
+      </p>
+
+      <img style="margin: auto; max-width: 100%;" alt="Lush mango tree" src="img/devices/tv.png">
+
+      <p>
+        The highest  regions.
+      </p>
+      <p>
+        It origi celebrations, and religious ceremonies.
+      </p>
+    </div>
+  </md-dialog-content>
+
+  <div class="md-actions" layout="row">
+    <md-button href="/#!/dashboards/devices" target="_blank" md-autofocus>
+      More on Wikipedia
+    </md-button>
+    <span flex></span>
+    <md-button ng-click="answer('not useful')" >
+     Not Useful
+    </md-button>
+    <md-button ng-click="answer('useful')" style="margin-right:20px;" >
+      Useful
+    </md-button>
+  </div>
+  </form>
+</md-dialog>
+</script>

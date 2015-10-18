@@ -1,0 +1,744 @@
+<!-- The list articles view -->
+<section data-ng-controller="DashboardsController" data-ng-init="find()">
+	<h1>Dashboards</h1>
+   
+    <div class="row">
+    
+        <div class="col-sm-8">
+        
+        <md-button ng-href="/#!/dashboards/devices" class="md-warn md-raised md-hue-2" ng-click="">Devices</md-button>
+        <!--<md-button class="md-accent md-raised md-hue-1" ng-click="setDataForNgDialogGraphDetails()" 
+        ng-dialog="firstDialogId8" 
+        ng-dialog-controller="DashboardsController"
+        ng-dialog-data="{{jsonData8}}"
+        ng-dialog-class="ngdialog-theme-default"
+        ng-dialog-show-close="false">Analytics</md-button>-->
+        <md-button  class="md-accent md-raised md-hue-1" ng-click="setAnalyticView()" ng-href="/#!/dashboards/charts" >{{analytics_name}}</md-button>   
+        <md-button ng-href="/#!/dashboards" class="md-raised md-primary" ng-click="">Predictions</md-button> 
+             <md-button ng-href="/#!/dashboards" class="md-accent md-raised md-hue-4" type="button" 
+        ng-dialog="firstDialogId7"
+        ng-dialog-controller="DashboardsController"
+        ng-dialog-data="{{jsonData5}}"
+        ng-dialog-class="ngdialog-theme-default"
+        ng-dialog-show-close="false">Summary</md-button>
+        </div>   
+        
+       
+        
+        
+        
+        <div class="col-sm-4">
+        
+        </div>
+    
+    
+    </div>
+    
+    
+    <div ng-show="basic" class="row"><!--Row Main Start-->
+    
+        <div class="col-sm-8"><!--Column 1 Start-->
+            
+            <h2>Power Consumption Information</h2>
+            <div class="row div-clearance-verticle div-clearance-horizontal">  <!--Extra Row 1 for Search Start-->
+            <div class="col-sm-6 div-clearance-verticle">
+            <md-input-container>
+                <label>Search Options</label>
+                <md-select data-ng-model="filterOption">
+                  <md-option ng-repeat="item in mainListItems" value="{{item.id}}">
+                    {{item.name}}
+                  </md-option>
+                </md-select>
+            </md-input-container>
+            
+            </div>
+            
+            
+            <div class="col-sm-4 div-clearance-verticle">
+            
+             
+            <md-button class="md-accent md-raised md-hue-1" ng-click="getMainListSearch(filterOption)">Main Search</md-button>
+            </div>
+             
+            </div><!--Extra Row 1 for Search End-->
+            
+            <div class="row div-clearance-verticle div-clearance-horizontal"><!--Row 1 Start-->
+                
+                <h3 class="font-color-style-chocolate">Overall Performance</h3>
+            
+                <div class="col-sm-4 power-detail div-clear-right" ng-dialog="firstDialogId1"
+        ng-dialog-controller="DashboardsController"  ng-dialog-class="ngdialog-theme-default"
+        ng-dialog-show-close="false" >
+                    <h4>Total Power</h4>
+                    <h2 class="kwh-rating-style">{{total_power_consumption}} KWh</h2>
+                    
+                    <h4 class="today_info_power" ng-show="mainTodayTotalPower && isToday">Today :{{(mainTodayTotalPower).toFixed(2)}} KWh</h4>
+                    
+                     <h4 class="yesterday_info_power" ng-show="mainYesterdayTotalPower && isYesterday">Yesterday :{{(mainYesterdayTotalPower).toFixed(2)}} KWh</h4>
+                    
+                     <h4 class="thismonth_info_power" ng-show="mainThisMonthTotalPower && isThisMonth">This Month :{{(mainThisMonthTotalPower).toFixed(2)}} KWh</h4>
+                    
+                     <h4 class="lastmonth_info_power" ng-show="mainLastMonthTotalPower && isLastMonth">Last Month :{{(mainThisMonthTotalPower).toFixed(2)}} KWh</h4>
+                    
+                </div>
+                
+              
+                
+                 <div class="col-sm-4 power-detail div-clear-left"><h4>Cost</h4>
+                
+                 <h2 class="volt-rating-style" >{{(total_power_consumption * price_per_kwh).toFixed(2)}} LKR</h2>
+                 <h4 class="today_info_power" ng-show="mainTodayTotalPowerCost && isToday">Today :{{(mainTodayTotalPowerCost).toFixed(2)}} LKR</h4>
+                     
+                     
+                <h4 class="yesterday_info_power" ng-show="mainYesterdayTotalPowerCost && isYesterday">Yesterday :{{(mainYesterdayTotalPowerCost).toFixed(2)}} LKR</h4>     
+                <h4 class="thismonth_info_power" ng-show="mainThisMonthTotalPowerCost && isThisMonth">This Month :{{(mainThisMonthTotalPowerCost)}} LKR</h4>     
+                 <h4 class="lastmonth_info_power" ng-show="mainLastMonthTotalPowerCost && mainLastMonthTotalPower && isLastMonth">Last Month :{{(mainLastMonthTotalPowerCost)}} LKR</h4>     
+                     
+                     
+                
+                </div>
+            
+            
+            </div><!--Row 1 End-->
+          
+            <div class="row div-clearance-verticle div-clearance-horizontal"><!--Row 2 Start-->
+              <h3 class="font-color-style-chocolate">Device Performance</h3>
+            <div class="col-sm-6 div-clearance-verticle">
+    
+ <!--<select class="form-control" data-ng-model="devices" ng-options="sm._id as sm.name for sm in deviceList"> </select>-->
+                
+        <md-input-container>
+        <label>Devices</label>
+        <md-select data-ng-model="devices">
+          <md-option ng-repeat="sm in deviceList" value="{{sm._id}}">
+            {{sm.name}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+                
+</div>
+                
+     <div class="col-sm-4 div-clearance-verticle">
+                <!--getPowerByDevice()  getTotalPowerConsumedPerDevice(devices)-->
+           
+   <button class="form-control btn btn-info" ng-click="getTotalPowerConsumedPerDevice(devices)">Calculate</button>             
+                            
+        </div>                 
+            
+            </div><!--Row 2 End-->
+            
+            <div class="row  div-clearance-verticle div-clearance-horizontal"><!--Row 3 Start-->
+                
+                
+                
+               
+ 
+                
+            
+                <div class="col-sm-6 power-detail div-clear-right" ng-dialog="firstDialogId3"
+        ng-dialog-controller="DashboardsController"  ng-dialog-class="ngdialog-theme-default"
+        ng-dialog-show-close="false"  ng-dialog-data="{{jsonData2}}"  ><h4>Total Power</h4>
+                   <h2 class="kwh-rating-style">{{power_per_device}} KWh</h2>
+                </div>
+                
+                 <div class="col-sm-6 power-detail div-clear-left">
+                     
+                     <h4 >Cost</h4>
+                     
+                      <h2 class="volt-rating-style">{{(power_per_device* price_per_kwh).toFixed(2)}} LKR</h2>
+                
+                
+                 </div>
+                
+                
+            
+            
+            </div><!--Row 3 End-->
+            
+            
+            
+            
+            
+      <div class="row div-clearance-verticle div-clearance-horizontal"><!--Row 4 Start-->
+              <h3 class="font-color-style-chocolate">Smart Plug Performance</h3>
+            <div class="col-sm-6">
+   <!--  <select class="form-control" data-ng-model="smartplugs" ng-options="sm._id as sm.name for sm in smartplugList"></select>-->
+                
+      <md-input-container>
+        <label>Smart Plugs</label>
+        <md-select data-ng-model="smartplugs">
+          <md-option ng-repeat="sm in smartplugList" value="{{sm._id}}">
+            {{sm.name}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+                
+                
+        </div>
+                            
+                      
+   
+            
+              <div class="col-sm-4 div-clearance-verticle">
+                <!--getPowerByDevice()  getTotalPowerConsumedPerDevice(devices)-->
+           
+   <button class="form-control btn btn-info" ng-click="getTotalPowerConsumedPerSmartPlug(smartplugs)">Calculate</button>             
+                            
+        </div>         
+            
+            
+            
+            </div>
+            
+              
+            
+            
+            <div class="row  div-clearance-verticle div-clearance-horizontal"><!--Row 4 End-->
+     
+                <div class="col-sm-6 power-detail div-clear-right" ng-dialog="firstDialogId33"
+        ng-dialog-controller="DashboardsController"  ng-dialog-class="ngdialog-theme-default"
+        ng-dialog-show-close="false"  ng-dialog-data="{{jsonData3}}"><h4>Total Power</h4><!--Row 5 Start-->
+                   <h2 class="kwh-rating-style">{{power_per_smartplug}} KWh</h2>
+                </div>
+                
+                 <div class="col-sm-6 power-detail div-clear-left">
+                     
+                     <h4 >Cost</h4>
+                     
+                      <h2 class="volt-rating-style">{{(power_per_smartplug* price_per_kwh).toFixed(2)}} LKR</h2>
+                     
+                
+                 </div>
+            
+               
+            
+            </div><!--Row 5 End-->
+            
+            
+        
+        </div><!--Column 1 End-->
+        
+        <div class="col-sm-4"><!--Column 2 Start-->
+            
+            <h2>Search </h2>
+            
+    <div class="row div-clearance-verticle">
+        
+  <div class="col-sm-6 ">
+<datepicker date-format="yyyy-MM-dd">
+<input type="datetime" placeholder="Start Date" class="form-control" min-view="date" auto-close="true" date-time ng-model="start_date" view="date">
+</datepicker>
+        
+        </div>        
+            
+  
+ <div class="col-sm-6 ">
+     <datepicker date-format="yyyy-MM-dd">
+        <input type="datetime" placeholder="End Date" class="form-control" min-view="date" auto-close="true" date-time ng-model="end_date" view="date">
+        </datepicker> 
+        
+    </div>      
+           
+            
+            
+    </div> 
+    
+            
+            
+    <div class="row div-clearance-verticle">
+            
+    <div class="col-sm-6">
+        
+        <input class="form-control" placeholder="Start Time" ui-timepicker  ng-model="start_time">
+        
+     </div>       
+        
+        
+     <div class="col-sm-6 ">
+         
+         <input class="form-control" placeholder="End Time" ui-timepicker  ng-model="end_time">
+        
+        
+     </div>           
+            
+    </div> 
+            
+    
+    <div class="row div-clearance-verticle div-clearance-horizontal">
+    
+        
+ <button class="form-control btn btn-info" type="button" 
+        ng-dialog="firstDialogId"
+        ng-dialog-controller="DashboardsController"
+        ng-dialog-data="{{jsonData1}}"
+        ng-dialog-class="ngdialog-theme-default-large"
+        ng-dialog-show-close="false">Get More Info</button>
+            
+    <button class="form-control btn btn-warning" ng-click=" getTotalPowerConsumptionFromEachDeviceByDayRange(start_date,end_date)">Filter</button>    
+      
+    </div>        
+         <div class="row div-clearance-verticle div-clearance-horizontal">
+              <h3>Consumption : {{total_power_consumption_per_date_range}}</h3>  
+            <!--<button class="form-control btn btn-danger" type="button" 
+        ng-dialog="firstDialogId2"
+        ng-dialog-controller="DashboardsController"      
+        ng-dialog-class="ngdialog-theme-default"
+        ng-dialog-show-close="false">More</button>-->
+          <!--   <button class="form-control btn btn-danger" ng-click="openFirst()">Open 1</button>-->
+             <button class="form-control btn btn-info" type="button" 
+        ng-dialog="firstDialogId2"
+        ng-dialog-controller="DashboardsController"
+        ng-dialog-data="{{jsonData1}}"
+        ng-dialog-class="ngdialog-theme-default"
+        ng-dialog-show-close="false">More Info</button>
+             
+             
+               <button class="form-control btn btn-success" type="button" 
+        ng-dialog="firstDialogId4"
+        ng-dialog-controller="DashboardsController"
+       
+        ng-dialog-class="ngdialog-theme-default"
+        ng-dialog-show-close="false">Percentage</button>
+             
+             
+              <button class="form-control btn btn-warning" type="button" 
+        ng-dialog="firstDialogId5"
+        ng-dialog-controller="DashboardsController"
+       
+        ng-dialog-class="ngdialog-theme-default"
+        ng-dialog-show-close="false">Gauge Meter</button>
+        </div>   
+            
+            
+      <md-input-container>
+        <label>Devices</label>
+        <md-select data-ng-model="devices_for_time">
+          <md-option ng-repeat="sm in deviceList" value="{{sm._id}}">
+            {{sm.name}}
+          </md-option>
+        </md-select>
+      </md-input-container>           
+    
+<!--<select class="form-control" data-ng-model="devices_for_time" ng-options="sm._id as sm.name for sm in deviceList">            </select>-->
+            
+            
+                
+
+           
+<button class="form-control btn btn-info" ng-click="getActivatedTimeOfDevice(devices_for_time)">Activate Time</button>      
+             <button class="form-control btn btn-danger" type="button" 
+        ng-dialog="firstDialogId6"
+        ng-dialog-controller="DashboardsController"
+        ng-dialog-data="{{jsonData4}}"
+        ng-dialog-class="ngdialog-theme-default"
+        ng-dialog-show-close="false">Get Activation Info</button>
+        </div>   
+        
+        
+       
+
+    </div><!--Row Main End-->
+
+
+
+    <!---->
+
+   
+                
+   
+    
+    
+   
+    
+    
+ 
+   
+    
+   
+        
+        
+
+    
+  
+    
+  
+    
+    
+     
+
+
+    
+    
+   
+</section>
+
+
+<!--Script Section Starts--><!--Script Section Starts--><!--Script Section Starts--><!--Script Section Starts-->
+<!--Script Section Starts--><!--Script Section Starts--><!--Script Section Starts--><!--Script Section Starts-->
+<!--Script Section Starts--><!--Script Section Starts--><!--Script Section Starts--><!--Script Section Starts-->
+<!--Script Section Starts--><!--Script Section Starts--><!--Script Section Starts--><!--Script Section Starts-->
+
+
+
+ <script type="text/ng-template" id="firstDialogId">
+        <div class="ngdialog-message ng-dialog-style-1">
+            <h3>Power Consumption Summary : {{ngDialogData.dateRange[0].start_date}} - {{ngDialogData.dateRange[0].end_date}}</h3>
+          
+            <!--<p ng-show="theme">Test content for <code>{{theme}}</code></p>
+            <p ng-show="ngDialogId">Dialog Id: <code>{{ngDialogId}}</code></p>-->
+            <!--<p>Start Date : {{ngDialogData.dateRange[0].start_date}}</p> 
+            <p>End Date : {{ngDialogData.dateRange[0].end_date}}</p>-->
+    <p class="data-passed-through" ng-show="ngDialogData.power && ngDialogData.totalCost && ngDialogData.moreinfo ">Total Consumption: <code>{{ngDialogData.power}}</code> , Total Cost: <code>{{ngDialogData.totalCost}}</code> LKR ,  No of Devices: <code>{{ngDialogData.moreinfo.length}}</code></p>
+    <p class="data-passed-through" ng-show="ngDialogData.totalCost"></p>
+             <p class="data-passed-through" ng-show="ngDialogData.moreinfo"></p>
+            
+           <!-- <p class="data-passed-through" ng-show="ngDialogData.summary">Summary: <code>{{ngDialogData.summary}}</code></p>
+            
+            <p class="data-passed-through" ng-show="ngDialogData.maxInfo">Max Info: <code>{{ngDialogData.maxInfo}}</code></p>
+            
+            <p class="data-passed-through" ng-show="ngDialogData.minInfo">Min Info: <code>{{ngDialogData.minInfo}}</code></p>-->
+            
+            
+            <!--Table Formatting Start-->
+            
+     <table class="popup-table table  table-stripped">
+         <thead> <tr><th>Device</th><th>Power (Kwh)</th><th>Cost (LKR)</th></tr></thead>
+         <tbody> 
+             <tr data-ng-repeat="info in ngDialogData.summary">
+                 <td data-ng-bind="info.device"></td>
+                 <td data-ng-bind="info.power"></td>
+                 <td data-ng-bind="info.cost"></td>
+             </tr>
+         </tbody>         
+    </table>
+    
+    <h3>Maximum Power Usage</h3>
+      
+     <table class="popup-table table  table-stripped">
+         <thead> <tr><th>Device</th><th>Usage</th></tr></thead>
+         <tbody>  
+             <tr><td data-ng-bind="ngDialogData.maxInfo[0].maxDevice"></td>
+                 <td data-ng-bind="ngDialogData.maxInfo[0].max"></td>
+             </tr>
+         </tbody>         
+    </table>         
+      
+    
+    <h3>Minimum Power Usage</h3>
+              
+       <table class="popup-table table  table-stripped">
+         <thead> <tr><th>Device</th><th>Usage</th></tr></thead>
+         <tbody>  
+             <tr><td data-ng-bind="ngDialogData.minInfo[0].minDevice"></td>
+                 <td data-ng-bind="ngDialogData.minInfo[0].min"></td>
+             </tr>
+         </tbody>         
+    </table>         
+            
+           <!--Table Formatting End-->   
+           
+           <!-- <p ng-show="dialogModel.message">Scope passed through: <code>{{dialogModel.message}}</code></p>-->
+            <p >The Overall Power Consumption : {{total_power_consumption}}</p>
+            <p>Close this dialog: <button class="inline close-this-dialog" ng-click="closeThisDialog()">Close</button></p>
+
+        </div>
+        <div class="ngdialog-buttons">
+        <!--    <button type="button" class="ngdialog-button ngdialog-button-secondary"
+                ng-dialog="secondDialogId"
+                ng-dialog-class="ngdialog-theme-default"
+                ng-dialog-controller="SecondModalCtrl"
+                ng-dialog-close-previous>Close and open</button>-->
+            <!--<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="openSecond()">Open next</button>-->
+        </div>
+    </script>
+
+
+
+ <script type="text/ng-template" id="firstDialogId1">
+        <div class="ngdialog-message ng-dialog-style-1">
+            <h3>Power Consumption Info</h3>
+            
+            <p >The Power Consumption : {{total_power_consumption}}</p>
+            <p class="data-passed-through" ng-show="ngDialogData.foo">Data passed through: <code>{{ngDialogData.foo}}</code></p>
+            
+                 <h4>Watt Meter - Overall Consumption</h4>
+        <div width="400" ng-radial-gauge ranges="ranges" value="value" value-unit="unit" precision="precision" lower-limit="lowerLimit" upper-limit="upperLimit"></div>
+        <hr>
+       
+            
+            
+            
+            <button class="form-control inline close-this-dialog btn btn-danger" ng-click="closeThisDialog()">Close</button>
+
+        </div>
+        
+    </script>
+
+
+<script type="text/ng-template" id="firstDialogId2">
+        <div class="ngdialog-message ng-dialog-style-1">
+            <h3> Overall Power Consumption Info</h3>
+            
+<p class="data-passed-through" ng-show="ngDialogData.daterange">Duration: <code>{{ngDialogData.daterange}}</code> </p>            
+<p class="data-passed-through" ng-show="ngDialogData.power">Power Consumption: <code>{{ngDialogData.power}}</code>  KWh</p>
+            
+        
+            
+             
+ <button class="form-control inline close-this-dialog btn btn-danger" ng-click="closeThisDialog()">Close</button>
+
+        </div>
+        
+    </script>
+
+
+<script type="text/ng-template" id="firstDialogId3">
+        <div class="ngdialog-message ng-dialog-style-1">
+            <h3> Device Power Consumption Info</h3>
+           
+<p class="data-passed-through" ng-show="ngDialogData.power">The Power Consumption: <code>{{ngDialogData.power}}</code></p>
+<p class="data-passed-through" ng-show="ngDialogData.totalpower">The Total Power Consumption: <code>{{ngDialogData.totalpower}}</code></p>
+            
+<h4>Watt Meter - Device Consumption</h4>
+<div width="400" ng-radial-gauge ranges="ranges1" value="ngDialogData.power" value-unit="unit1" precision="precision1"
+             lower-limit="lowerLimit1" upper-limit="upperLimit1"></div>
+ <hr>          
+             
+ <button class="form-control inline close-this-dialog btn btn-danger" ng-click="closeThisDialog()">Close</button>
+
+        </div>
+        
+    </script>
+
+
+<script type="text/ng-template" id="firstDialogId33">
+        <div class="ngdialog-message ng-dialog-style-1">
+            <h3> SmartPlug Power Consumption Info</h3>
+           
+<p class="data-passed-through" ng-show="ngDialogData.power">The Power Consumption: <code>{{ngDialogData.power}}</code></p>
+<p class="data-passed-through" ng-show="ngDialogData.totalpower">The Total Power Consumption: <code>{{ngDialogData.totalpower}}</code></p>
+            
+<h4>Watt Meter - SmartPlug Consumption</h4>
+<div width="400" ng-radial-gauge ranges="ranges2" value="ngDialogData.power" value-unit="unit2" precision="precision2"
+             lower-limit="lowerLimit2" upper-limit="upperLimit2"></div>
+ <hr>          
+             
+ <button class="form-control inline close-this-dialog btn btn-danger" ng-click="closeThisDialog()">Close</button>
+
+        </div>
+        
+    </script>
+
+<script type="text/ng-template" id="firstDialogId4">
+
+            <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->
+            
+        <div class="row div-clearance-verticle div-clearance-horizontal">     
+        <div>
+            
+            <h2>Sample progressbar</h2>
+        <div class="progress-wrapper">
+            {{ current }}/{{ max }}
+            <div
+                round-progress
+                max="max"
+                current="current"
+                color="{{ getColor() }}"
+                bgcolor="{{ bgColor }}"
+                radius="{{ radius }}"
+                semi="isSemi"
+                rounded="rounded"
+                stroke="{{ stroke }}"
+                clockwise="clockwise"
+                responsive="responsive"
+                duration="{{ duration }}"
+                animation="{{ currentAnimation }}">
+
+                <svg>
+                    <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="5%"  stop-color="green"/>
+                        <stop offset="95%" stop-color="gold"/>
+                    </linearGradient>
+                </svg>
+            </div>
+        </div>
+
+       
+
+
+    </div>
+
+    <div class="container">
+        <h2>Clock example</h2>
+        <div class="progress-wrapper">
+          {{ time }}
+            <div
+                round-progress
+                max="59"
+                current="timerCurrent"
+                color="{{ getColor() }}"
+                bgcolor="{{ bgColor }}"
+                radius="{{ radius }}"
+                semi="isSemi"
+                rounded="rounded"
+                clockwise="clockwise"
+                responsive="responsive"
+                stroke="{{ stroke }}"
+                animation="{{ currentAnimation }}"></div>
+        </div>
+    </div>
+            
+            
+            
+            
+        </div>    
+   
+            
+         <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->  
+
+    </script>
+
+
+
+<!--script to get gauge meters up-->
+
+<script type="text/ng-template" id="firstDialogId5">
+
+            <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->
+            
+         <h4>Watt Meter - Overall Consumption</h4>
+        <div width="400" ng-radial-gauge ranges="ranges" value="value" value-unit="unit" precision="precision" lower-limit="lowerLimit" upper-limit="upperLimit"></div>
+        <hr>
+       
+            
+         <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->  
+
+    </script>
+
+
+
+
+<!--Script to -->
+
+
+<script type="text/ng-template" id="firstDialogId6">
+
+            <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->
+            
+         <h3>Activation of devices</h3>
+    
+<!--<p class="data-passed-through" ng-show="ngDialogData.list">List: <code>{{ngDialogData.list}}</code></p>            
+<p class="data-passed-through" ng-show="ngDialogData.len">Size: <code>{{ngDialogData.len}}</code></p>-->
+    
+       <ul ng-repeat="data in ngDialogData.list">
+           
+           <li>{{data.time}}</li>
+    
+        </ul>
+    
+        <ul ng-repeat="block in ngDialogData.active">
+            
+            <ul ng-repeat="value in block">
+           
+           <li>{{value.index}} => {{value.date}}</li>
+    
+        </ul>
+           
+        
+    
+        </ul>
+    
+    
+            
+         <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->  
+
+    </script>
+
+<!--Summary of Power Consumption Script Start-->
+<script type="text/ng-template" id="firstDialogId7">
+
+            <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->
+  <div width="400" class="ngdialog-message ng-dialog-style-1">
+   
+      <h3>Summary of Overall Power Consumption</h3>
+    
+    <p>No of Devices: {{summaryOnMaximumPowerUsagePerDevice.length}}</p>
+
+    <table class="popup-table table  table-stripped">
+         <thead> <tr><th>Device</th><th>Consumption</th></tr></thead>
+         <tbody> 
+             <tr data-ng-repeat="info in summaryOnMaximumPowerUsagePerDevice">
+                 <td data-ng-bind="info.device"></td>
+                 <td data-ng-bind="info.power"></td>
+             </tr>
+         </tbody>         
+    </table>
+    
+    <h3>Maximum Power Usage</h3>
+      
+     <table class="popup-table table  table-stripped">
+         <thead> <tr><th>Device</th><th>Usage</th></tr></thead>
+         <tbody>  
+             <tr><td data-ng-bind="maxPowerUserInfo[0].maxDevice"></td>
+                 <td data-ng-bind="maxPowerUserInfo[0].max"></td>
+             </tr>
+         </tbody>         
+    </table>         
+      
+    
+    <h3>Minimum Power Usage</h3>
+              
+       <table class="popup-table table  table-stripped">
+         <thead> <tr><th>Device</th><th>Usage</th></tr></thead>
+         <tbody>  
+             <tr><td data-ng-bind="minPowerUserInfo[0].minDevice"></td>
+                 <td data-ng-bind="minPowerUserInfo[0].min"></td>
+             </tr>
+         </tbody>         
+    </table>         
+      
+ 
+  </div>          
+         
+  
+            <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->
+            <!--Animation Section-->  
+
+    </script>
+
+<!--Graphical Data -->
+<script type="text/ng-template" id="firstDialogId8">
+
+ <fusioncharts 
+    width="600" 
+    height="400"
+    type="column2d"
+    datasource="{{myDataSource}}"
+    ></fusioncharts>
+
+</script>
+
+<!--Summary of Power Consumption Script End-->

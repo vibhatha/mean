@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org">
+<head>
+	<!-- Use the 'title' property to render a page title  -->
+	<title><%= title %></title>
+    
+    <!--UI Imports START-->
+    
+    <meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		
+   <title>IPMS</title>
+    
+        <script src="/js/theme1/jquery.min.js"></script>
+        <script src="//code.jquery.com/jquery-latest.min.js"></script>
+        <script src="//code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/theme1/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="/css/theme1/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="/css/theme1/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/css/theme1/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="/css/theme1/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/css/theme1/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    
+    
+    <!--UI Imports END-->
+    
+    <!--CSS FOR GRAPHS START-->
+      <link rel="stylesheet" href="https://rawgit.com/novus/nvd3/v1.1.15-beta/nv.d3.min.css"/>
+      <script data-require="angular.js@1.2.x" type="text/javascript" src="/lib/angular/angular.js" data-semver="1.2.16">       </script>
+  <!--  <link rel="stylesheet" href="/css/style1.css" />-->
+     <!--<script data-require="angular.js@1.2.x" src="https://code.angularjs.org/1.2.16/angular.js" data-semver="1.2.16"></script>-->
+ 
+     <script src="https://rawgit.com/mbostock/d3/master/d3.min.js"></script>
+     <script src="https://rawgit.com/novus/nvd3/v1.1.15-beta/nv.d3.min.js"></script>
+     <script src="https://rawgit.com/krispo/angular-nvd3/v0.1.1/dist/angular-nvd3.js"></script>
+    
+    <!--Time Picker Libraries -->
+    <script src="js/timepicker/timepickerDirective.js"></script>
+    <script src="js/timepicker/popupDirective.js"></script>
+    <script src="js/timepicker/styleSheetFactory.js"></script>
+    
+    
+  
+    
+    <!--Angular DateTime Picker START-->
+    
+  <!--  <link rel="stylesheet" href="/css/dtp/angular-datepicker.css"/>-->
+     <!--Angular DateTime Picker END-->
+   
+     <!--Angular DateTime Picker 2 CSS-->
+     
+  
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.css">
+ 
+     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+    <!--Angular DateTime Picker 2 END-->
+    
+    
+    <!--Angular DateTime Picker 3 START-->
+    
+    <link href="/css/dtp3/angular-datepicker.css" rel="stylesheet" type="text/css" />
+    
+    <!--Angular DateTime Picker 3 END-->
+    
+   
+    <!--Angular Time Picker 1 START-->
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/tp/jquery.timepicker.css" />
+    
+    <!--Ng Dialog-->
+    
+    <link href="/js/ng-dialog/css/ngDialog.min.css" rel="stylesheet" type="text/css">
+     <link rel="stylesheet" href="/js/ng-dialog/css/ngDialog-theme-default.css">
+     <link rel="stylesheet" href="/js/ng-dialog/css/ngDialog-theme-default-large.css">
+    <link rel="stylesheet" href="/js/ng-dialog/css/ngDialog-theme-plain.css">
+    <link rel="stylesheet" href="/js/ng-dialog/css/ngDialog-custom-width.css">
+    
+    <!--Angular Time Picker 2 END-->
+    
+    
+    <!--Circular Progress Bar Start-->
+    
+    <script src="http://crisbeto.github.io/angular-svg-round-progressbar/roundProgress.min.js"></script>
+    
+    <!--Circular Progress Bar End-->
+    
+    
+    <!--Angular Material UI Start-->
+ <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+    
+    
+    
+    <!--Angular Material UI End-->
+    
+    <!--Angular Material Icons Start-->
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.6.0/angular-material-icons.min.js"></script> 
+    
+    <!--Angular Material Icons End-->
+    
+    
+    <!--Angular Material Table Start-->
+
+      <link rel="stylesheet" href="http://rawgit.com/daniel-nagy/md-data-table/master/dist/md-data-table.css">
+    
+    <!--Angular Material Table End-->
+    
+    <!--CSS FOR GRAPHS END-->
+    <style>
+    
+       /* tbody{
+              overflow-y: scroll;
+              overflow-x: scroll;
+              height: 450px;
+              width: 120%;
+              position: absolute;
+            }
+       */
+     
+    </style>
+    
+   
+</head>
+<body ng-controller="ExampleController" >
+          
+   	<div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#!/">IPOWER</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#!/">
+                        <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                            <a href="#!/">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#!/">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#!/">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#!/">
+                                <strong>Read All Messages</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-messages -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#!/">
+                        <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-tasks">
+                        <li>
+                            <a href="#!/">
+                                <div>
+                                    <p>
+                                        <strong>Task 1</strong>
+                                        <span class="pull-right text-muted">40% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                            <span class="sr-only">40% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#!/">
+                                <div>
+                                    <p>
+                                        <strong>Task 2</strong>
+                                        <span class="pull-right text-muted">20% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#!/">
+                                <div>
+                                    <p>
+                                        <strong>Task 3</strong>
+                                        <span class="pull-right text-muted">60% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            <span class="sr-only">60% Complete (warning)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#!/">
+                                <div>
+                                    <p>
+                                        <strong>Task 4</strong>
+                                        <span class="pull-right text-muted">80% Complete</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#!/">
+                                <strong>See All Tasks</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#!/">
+                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#!/">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> New Comment
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#!/">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#!/">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#!/">
+                                <div>
+                                    <i class="fa fa-tasks fa-fw"></i> New Task
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#!/">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#!/">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+                <!-- /.dropdown -->
+                <!--USER PROFILE BUTTON-->
+                <li data-ng-show="authentication.user" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#!/">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul  class="dropdown-menu dropdown-user">
+                        <li><a data-ng-show="authentication.user" href="#!/"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a data-ng-show="authentication.user" href="#!/"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a data-ng-show="authentication.user" href="/signout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                       <li>
+                            <a href="#!/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a data-ng-show="authentication.user"  href="#!/"><i class="fa fa-bar-chart-o fa-fw"></i> Articles<span class="fa arrow"></span></a>
+                            <ul data-ng-show="authentication.user"  class="nav nav-second-level">
+                                <li>
+                                    <a href="/#!/articles">List Articles</a>
+				
+                                </li>
+                                <li>
+                                    	<a href="/#!/articles/create">Create Article</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <!--Menu Item Device START-->
+                           <li>
+                            <a data-ng-show="authentication.user"  href="#!/"><i class="fa fa-bar-chart-o fa-fw"></i> Devices<span class="fa arrow"></span></a>
+                            <ul data-ng-show="authentication.user"  class="nav nav-second-level">
+                                <li>
+                                    <a href="/#!/devices">List Devices</a>
+				
+                                </li>
+                                <li>
+                                    	<a href="/#!/devices/create">Create Device</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                         <!--Menu Item Device END-->
+                         <!--Menu Item Device START-->
+                           <li>
+                            <a data-ng-show="authentication.user"  href="#!/"><i class="fa fa-bar-chart-o fa-fw"></i> Power<span class="fa arrow"></span></a>
+                            <ul data-ng-show="authentication.user"  class="nav nav-second-level">
+                                <li>
+                                    <a href="/#!/powers">List Power</a>
+				
+                                </li>
+                                <li>
+                                    	<a href="/#!/powers/create">Create Power</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                         <!--Menu Item Device END-->
+                         <!--Menu Item Device START-->
+                           <li>
+                            <a data-ng-show="authentication.user"  href="#!/"><i class="fa fa-bar-chart-o fa-fw"></i> Dashboard<span class="fa arrow"></span></a>
+                            <ul data-ng-show="authentication.user"  class="nav nav-second-level">
+                                <li>
+                                    <a href="/#!/dashboards">List Dashboard</a>
+				
+                                </li>
+                                <li>
+                                    	<a href="/#!/dashboards/create">Create Dashboard</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                         <!--Menu Item Device END-->
+                         <!--Menu Item Device START-->
+                           <li>
+                            <a data-ng-show="authentication.user"  href="#!/"><i class="fa fa-bar-chart-o fa-fw"></i> Smart Plug<span class="fa arrow"></span></a>
+                            <ul data-ng-show="authentication.user"  class="nav nav-second-level">
+                                <li>
+                                    <a href="/#!/smartplugs">List Smart Plugs</a>
+                                  <a href="/#!/smartplugs/create">Create Smart Plugs</a>
+				
+                                </li>
+                                
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                         <!--Menu Item Device END-->
+                        <li>
+                            <a data-ng-show="authentication.user" href="/#!/graphs"><i class="fa fa-table fa-fw"></i> Graphs</a>
+                        </li>
+                       <li>
+                            <a data-ng-show="authentication.user"  href="#!/"><i class="fa fa-bar-chart-o fa-fw"></i> Schedule<span class="fa arrow"></span></a>
+                            <ul data-ng-show="authentication.user"  class="nav nav-second-level">
+                                <li>
+                                    <a href="/#!/schedules">List Schedule</a>
+                                  <a href="/#!/schedules/create">Create Schedule</a>
+				
+                                </li>
+                                
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#!/"><i class="fa fa-edit fa-fw"></i> Schedule Manager</a>
+                        </li>
+                        <li>
+                            <a href="#!/"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#!/">Panels and Wells</a>
+                                </li>
+                                <li>
+                                    <a href="#!/">Buttons</a>
+                                </li>
+                               
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#!/"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#!/">Second Level Item</a>
+                                </li>
+                              
+                                <li>
+                                    <a href="#!/">Third Level <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="#!/">Third Level Item</a>
+                                        </li>
+                                      
+                                      
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li data-ng-show="!authentication.user" >
+                            <a href="#!/"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li data-ng-show="!authentication.user">
+                                    <a href="/signup">Sign Up</a>
+                                </li>
+                                <li data-ng-show="!authentication.user">
+                                    <a href="/signin">Login Page</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Dashboard</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div data-ng-show="authentication.user"  class="row">
+               <!-- <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-comments fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">26</div>
+                                    <div>New Comments!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#!/!/">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>-->
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <!--<div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">12</div>
+                                    <div>New Tasks!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#!/!/">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>-->
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <!--<div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-shopping-cart fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">124</div>
+                                    <div>New Orders!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#!/">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>-->
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <!--<div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-support fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">13</div>
+                                    <div>Support Tickets!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#!/">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>-->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="panel panel-default">
+                        <!--AREA 1 DIV INCLUDE-->
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div style="display:none" id="morris-area-chart"></div>
+                            <!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW-->
+                            <!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW-->
+                            <!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW-->
+                            <!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW-->
+                            <!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW-->
+                            <!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW-->
+                            <div ng-view class="ng-view-style"></div>
+                            <!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW-->
+                            <!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW-->
+                            <!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW-->
+                            <!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW-->
+                            <!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW-->
+                            <!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW--><!--NG VIEW-->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <!--AREA 2 DIV INCLUDE-->
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="table-responsive">
+                                       
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.col-lg-4 (nested) -->
+                                <div class="col-lg-8">
+                                    <div style="display:none" id="morris-bar-chart"></div>
+                                </div>
+                                <!-- /.col-lg-8 (nested) -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                           <!--Time Line Area 3-->
+                           
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-8 -->
+                <div class="col-lg-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i> Notifications
+                        </div>
+                        <!-- /.panel-heading -->
+
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                         
+                        </div>
+                        <div class="panel-body">
+                            <div style="display:none" id="morris-donut-chart"></div>
+                          
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    <div class="chat-panel panel panel-default">
+         <!--AREA 1 DIV INCLUDE-->
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            
+                        </div>
+                        <!-- /.panel-body -->
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-warning btn-sm" id="btn-chat">
+                                        Send
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- /.panel-footer -->
+                    </div>
+                    <!-- /.panel .chat-panel -->
+                </div>
+                <!-- /.col-lg-4 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#!/page-wrapper -->
+
+    </div>
+    
+    
+    
+  
+
+	<!-- Render the user object -->
+	<script type="text/javascript">
+		window.user = <%- user || 'null' %>;
+	</script>
+    
+    <!--Styling START-->
+    
+    
+    
+    <!--Styling END-->
+    
+    
+    
+    
+    
+	
+	<!-- Load local libraries -->
+	
+	<script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
+	<script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>
+	
+	<!-- Load the articles module -->
+	<script type="text/javascript" src="/articles/articles.client.module.js"></script>
+	<script type="text/javascript" src="/articles/controllers/articles.client.controller.js"></script>
+	<script type="text/javascript" src="/articles/services/articles.client.service.js"></script>
+	<script type="text/javascript" src="/articles/config/articles.client.routes.js"></script>
+    
+    <!-- Load the smartplug module -->
+    <script type="text/javascript" src="/smartplugs/smartplugs.client.module.js"></script>
+	<script type="text/javascript" src="/smartplugs/controllers/smartplugs.client.controller.js"></script>
+	<script type="text/javascript" src="/smartplugs/services/smartplugs.client.service.js"></script>
+	<script type="text/javascript" src="/smartplugs/config/smartplugs.client.routes.js"></script>
+    
+     <!-- Load the device module -->
+    <script type="text/javascript" src="/devices/devices.client.module.js"></script>
+	<script type="text/javascript" src="/devices/controllers/devices.client.controller.js"></script>
+	<script type="text/javascript" src="/devices/services/devices.client.service.js"></script>
+	<script type="text/javascript" src="/devices/config/devices.client.routes.js"></script>
+    
+    <!-- Load the Power module -->
+    <script type="text/javascript" src="/powers/powers.client.module.js"></script>
+	<script type="text/javascript" src="/powers/controllers/powers.client.controller.js"></script>
+	<script type="text/javascript" src="/powers/services/powers.client.service.js"></script>
+	<script type="text/javascript" src="/powers/config/powers.client.routes.js"></script>
+    
+     <!-- Load the Graphs module -->
+    <script type="text/javascript" src="/graphs/graphs.client.module.js"></script>
+	<script type="text/javascript" src="/graphs/controllers/graphs.client.controller.js"></script>
+	<script type="text/javascript" src="/graphs/services/graphs.client.service.js"></script>
+	<script type="text/javascript" src="/graphs/config/graphs.client.routes.js"></script>
+    
+    
+    <!-- Load the Schedule module -->
+    
+    <script type="text/javascript" src="/schedules/schedules.client.module.js"></script>
+	<script type="text/javascript" src="/schedules/controllers/schedules.client.controller.js"></script>
+	<script type="text/javascript" src="/schedules/services/schedules.client.service.js"></script>
+	<script type="text/javascript" src="/schedules/config/schedules.client.routes.js"></script>
+    
+     <!-- Load the Dashboard module -->
+    
+    <script type="text/javascript" src="/dashboards/dashboards.client.module.js"></script>
+	<script type="text/javascript" src="/dashboards/controllers/dashboards.client.controller.js"></script>
+	<script type="text/javascript" src="/dashboards/services/dashboards.client.service.js"></script>
+	<script type="text/javascript" src="/dashboards/config/dashboards.client.routes.js"></script>
+    
+    
+    
+
+	<!-- Load the example module -->
+	<script type="text/javascript" src="/example/example.client.module.js"></script>
+	<script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>
+	<script type="text/javascript" src="/example/config/example.client.routes.js"></script>
+
+	<!-- Load the users module -->
+	<script type="text/javascript" src="/users/users.client.module.js"></script>
+	<script type="text/javascript" src="/users/services/authentication.client.service.js"></script>
+
+	<!-- Bootstrap AngularJS application -->
+	<script type="text/javascript" src="/application.js"></script>
+
+
+ 
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/theme1/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/js/theme1/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="/js/theme1/raphael-min.js"></script>
+    <script src="/js/theme1/morris.min.js"></script>
+    <script src="/js/theme1/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/js/theme1/sb-admin-2.js"></script>
+    <script src="/js/ui-bootstrap-0.13.0.min.js"></script>
+    
+  
+    <!--Angular DateTime Picker Javascript-->
+    
+  
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.10.2/angular-moment.min.js"></script>
+    <script src="/js/dtp/datePicker.js"></script>
+    <script src="/js/dtp/datePickerUtils.js"></script>
+    <script src="/js/dtp/dateRange.js"></script>
+    <script src="/js/dtp/input.js"></script>
+    <script src="/js/dtp/angular-datepicker.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js"></script>-->
+    
+    
+   
+      <!--Angular DateTime Picker 3 Javascript START-->
+    
+   
+    <script src="/js/dtp3/angular-datepicker.js"></script>
+  
+    
+    
+    
+      <!--Angular DateTime Picker 2 Javascript END-->
+    
+    
+    <!--Angular Time Picker START-->
+    
+    <script type="text/javascript" src="/js/tp/jquery.timepicker.js"></script>
+    <script type="text/javascript" src="/js/tp/timepickerdirective.min.js"></script>
+     <script type="text/javascript" src="/js/ng-dialog/js/ngDialog.min.js"></script>
+    <!--Angular Time Picker END-->
+    
+    
+    <!-- AngularUI Bootstrap -->
+    
+   <!--Angular Fusion Charts START-->
+    
+    <script  src="/js/chart/fusioncharts.js"></script>
+  
+    <script  src="/js/chart/angular-fusioncharts.js"></script>
+    
+    <!--Angular Fusion Charts END-->
+    
+    
+    <!---->
+    
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="/js/gaugemeter/ng-radial-gauge-dir.js"></script>
+    
+    
+   <!--Angular Material UI Start-->
+   
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
+
+
+    <!-- Angular Material Javascript now available via Google CDN; version 0.11.2 used here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js"></script>
+  
+    <!--Angular Material UI End--> 
+    
+    <!--Angular Material Table Start-->
+   
+<!-- module -->
+ <script src="http://rawgit.com/daniel-nagy/md-data-table/master/dist/md-data-table.js"></script>
+     <!--Angular Material Table End-->
+    
+
+</body>
+</html>

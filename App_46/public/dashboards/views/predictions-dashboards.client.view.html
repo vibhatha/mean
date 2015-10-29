@@ -1,0 +1,70 @@
+<section class="gridListdemoBasicUsage gray tabsdemoStaticTabs dialogdemoBasicUsage" data-ng-controller="DashboardsController" data-ng-init="find()">
+
+      <div class="row">
+    
+        <div class="col-sm-8">
+        
+        <md-button ng-href="/#!/dashboards/" class="md-primary md-raised md-hue-2" ng-click="">Basic</md-button>
+      
+        </div>   
+        
+       
+        
+        
+        
+        <div class="col-sm-4">
+        
+        </div>
+    
+    
+    </div>
+    
+    
+       
+    <md-toolbar class="md-warn">
+    <div class="md-toolbar-tools">
+      <h2 class="md-flex">Predictions</h2>
+    </div>
+  </md-toolbar>
+  <md-content flex layout-padding>
+      
+       <div layout="row">
+              
+           <div class="purple" flex="20">
+               
+               <md-input-container flex>
+                  <label>Search</label>
+                  <input type="text" ng-model="searchDevice"/>
+                 
+               </md-input-container>
+               
+               <ul ng-repeat="device in deviceList | filter:searchDevice | limitTo:3">
+               
+                  <md-button ng-click="getPredictionDetails(device)" class="md-raised md-warn">{{device.name}}</md-button>
+               
+                   
+               
+               </ul>
+               
+               
+               
+           </div>
+           
+           
+           <div class="green" flex="80">
+               {{ searchDevice}}
+           </div>
+           
+       </div>
+   
+  </md-content>
+
+</section>
+
+
+
+
+
+
+
+

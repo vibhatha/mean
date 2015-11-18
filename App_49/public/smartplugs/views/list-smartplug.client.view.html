@@ -1,0 +1,36 @@
+<!-- The list articles view -->
+<section data-ng-controller="SmartPlugsController" data-ng-init="find()">
+	<h1>Articles</h1>
+     <a href="/#!/">Home</a>
+	<ul>
+		<!-- The list of article -->
+		<!--<li data-ng-repeat="smartplug in smartplugs">
+			<a data-ng-href="#!/smartplugs/{{smartplug._id}}" data-ng-bind="smartplug.sid"></a>
+			<br>
+			<small data-ng-bind="smartplug.created | date:'medium'"></small>
+			<small>/</small>
+			<small data-ng-bind="smartplug.creator.fullName"></small>
+			<p data-ng-bind="smartplug.name"></p>
+		</li>-->
+	</ul>
+   <div class="table-panel"> 
+    <table class="table smartplug-table table-striped">
+        
+      <thead>  <tr><th>Name</th><th>Created by</th><th>Created</th><th></th></tr></thead>
+      
+        <tbody><tr data-ng-repeat="smartplug in smartplugs">
+                <td data-ng-bind="smartplug.name"></td>
+                <td data-ng-bind="smartplug.creator.fullName"></td>
+               
+                <td data-ng-bind="smartplug.created | date:'medium'"></td>
+                <td><a data-ng-href="#!/smartplugs/{{smartplug._id}}">View</a></td>
+            </tr>
+        </tbody>
+    
+    </table>
+    </div>    
+	<!-- If there are no articles in the list, suggest the user's create a new article -->
+	<div data-ng-hide="!smartplugs || smartplugs.length">
+		No smartplug yet, why don't you <a href="/#!/smartplugs/create">create one</a>?
+	</div>
+</section>

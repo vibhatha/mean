@@ -1,0 +1,36 @@
+<!-- The list articles view -->
+<section data-ng-controller="SchedulesController" data-ng-init="find()">
+	<h1>Schedules</h1>
+    <a href="/#!/">Home</a>
+	<ul>
+		<!-- The list of article -->
+<!--		<li data-ng-repeat="schedule in devices">
+			<a data-ng-href="#!/devices/{{device._id}}" data-ng-bind="device.did"></a>
+			<br>
+			<small data-ng-bind="device.created | date:'medium'"></small>
+			<small>/</small>
+			<small data-ng-bind="device.creator.fullName"></small>
+			<p data-ng-bind="device.name"></p>
+		</li>-->
+        
+       
+	</ul>
+    <div class="table-panel">
+     <table class="table schedule-table table-hover table-stripped">
+        
+       <thead><tr><th>Name</th><th>Created By</th><th>Created</th><th></th></tr></thead> 
+        <tbody>   <tr data-ng-repeat="schedule in schedules">
+            <td data-ng-bind="schedule.name"></td>
+            <td data-ng-bind="schedule.creator.fullName"></td>
+            <td data-ng-bind="schedule.created | date:'medium'"></td>
+            <td><a data-ng-href="#!/schedules/{{schedule._id}}">View</a></td>
+        </tr>
+        </tbody>  
+    
+    </table>
+    </div>
+	<!-- If there are no articles in the list, suggest the user's create a new article -->
+	<div data-ng-hide="!schedules || schedules.length">
+		No schedule yet, why don't you <a href="/#!/schedules/create">create one</a>?
+	</div>
+</section>

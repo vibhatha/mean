@@ -1,0 +1,163 @@
+<!-- The create article view -->
+<section class="container"  data-ng-controller="SchedulesController">
+	
+	<!-- The new article form -->
+  
+   
+     
+  
+	<form data-ng-submit="create()" novalidate>
+
+<div class="row">
+    
+    <div class="col-sm-2">
+        <h2>New Schedule</h2>
+    </div>
+    
+     <div class="col-sm-2">
+           <a href="/#!/">Home</a>
+    </div>
+    
+     <div class="col-sm-2">
+         		<input class="form-control btn btn-info" type="submit">
+    </div>
+        
+        </div>        
+ 
+        <!--Row 1 START-->
+<div class="row">
+        
+     <div class="col-sm-2"><label for="did">Schedule ID</label>
+    
+     <input class="form-control" type="text" data-ng-model="schid" id="did" placeholder="Schedule Id" required/>
+    
+      </div>  
+  <div class="col-sm-2"><label for="name">Name</label>
+        
+            <input class="form-control" type="text" data-ng-model="name" id="name"  placeholder="Name"/>
+      
+  </div>
+  <div class="col-sm-2"><label for="name">Type</label>
+ 
+            <input class="form-control" type="text" data-ng-model="type" id="type"  placeholder="Type"/>
+ 
+  </div>
+</div>
+       <!--Row 1 END-->  
+        
+        
+    <!--Row 2 START-->
+   
+ <div class="row">
+        
+  <div class="col-sm-2"><label for="start">Start Time</label>
+    
+    <input class="form-control" ng-click="getClock1()" type="text" data-ng-model="start1" readonly>
+    <timepicker-directive ng-show="clockVisible1" input-model="start1"></timepicker-directive>
+    
+  </div>  
+    
+  <div class="col-sm-2"><label for="end">End Time</label>
+        
+    <input class="form-control" ng-click="getClock2()" type="text" data-ng-model="end1" readonly>
+    <timepicker-directive ng-show="clockVisible2" input-model="end1"></timepicker-directive>
+  </div>
+     
+    <div class="col-sm-2"><label for="end">Days</label>
+        
+ <div class="btn-group">
+  <button data-toggle="dropdown" class="btn dropdown-toggle"  data-placeholder="Please select">Checked option <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+  
+        <li><input type="checkbox" data-ng-model="day1" ng-click="" id="Monday"><label for="Monday" name="Monday" value="Monday">Monday</label></li>
+        <li><input type="checkbox" data-ng-model="day2"  ng-click=""  id="Tuesday"><label for="Tuesday" name="Tuesday" value="Tuesday">Tuesday</label></li>
+        <li><input type="checkbox" data-ng-model="day3"  ng-click=""  id="Wednesday"><label for="Wednesday" name="Wednesday" value="Wednesday">Wednesday</label></li>
+        <li><input type="checkbox" data-ng-model="day4"  ng-click=""  id="Thursday"><label for="Thursday" name="Thursday" value="Thursday">Thursday</label></li>
+        <li><input type="checkbox" data-ng-model="day5"  ng-click=""  id="Friday"><label for="Friday" name="Friday" value="Friday">Friday</label></li>
+        <li><input type="checkbox" data-ng-model="day6"  ng-click=""  id="Saturday"><label for="Saturday" name="Saturday" value="Saturday">Saturday</label></li>
+         <li><input type="checkbox" data-ng-model="day7"  ng-click=""  id="Sunday"><label for="Sunday" name="Sunday" value="Sunday">Sunday</label></li>
+      <!-- Other items -->
+    </ul>
+</div>
+            
+  </div>
+  
+</div>
+    
+  
+    <!--Row 2 END-->    
+   
+     
+ <!--Row 3 START-->
+   
+ <div class="row">
+        
+  <div class="col-sm-1"><label for="condition">Condition</label>
+    
+   <select class="form-control" data-ng-model="switchon" ng-options="sm.feature for sm in switch"></select>
+    
+  </div>  
+  <!--<div class="col-sm-1"><label for="random">Random</label>
+        
+    	<label class="form-control "><input type="checkbox" value=""></label>
+  </div>-->
+
+  <div class="col-sm-1"><label for="daily">Daily</label>
+        
+    	<label class="form-control "><input type="checkbox" data-ng-model="daily" value=""></label>
+  </div>
+     
+      <div class="col-sm-2"><label for="daily">Devices</label>
+      <select class="form-control" data-ng-model="devices" ng-options="sm._id as sm.name for sm in deviceList">                          </select>
+    
+  </div>
+     
+       <div class="col-sm-2"><label for="daily">Smart Plug</label>
+        
+    	<select class="form-control" data-ng-model="smartplugs" ng-options="sm._id as sm.name for sm in smartplugList"></select>
+  </div>
+  
+</div>
+    
+  
+    <!--Row 3 END-->    
+        
+        
+<!--Row 4 START-->
+   
+ <div class="row">
+        
+  <div class="col-sm-6"><label for="condition">Description</label>
+    
+  <textarea class="form-control" rows="2" data-ng-model="description" id="description" placeholder="Description"/>
+    
+  </div>  
+     
+  
+  
+  
+</div>
+    
+  
+<div class="row">
+    
+     
+
+        
+        </div>        
+        
+ <!--Row 4 END-->            
+        
+   <div data-ng-show="error">
+			<strong data-ng-bind="error"></strong>
+		</div>     
+ 
+        
+        
+        
+        
+     
+        
+	</form>
+</section>
+

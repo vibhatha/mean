@@ -1,0 +1,42 @@
+
+  #wrapper { 
+        width:595px;
+        margin:0 auto;
+      }
+      legend {
+        margin-top: 20px;
+      }
+      #attribution {
+        font-size:12px;
+        color:#999;
+        padding:20px;
+        margin:20px 0;
+        border-top:1px solid #ccc;
+      }
+      #O_o { 
+        text-align: center; 
+        background: #33577b;
+        color: #b4c9dd;
+        border-bottom: 1px solid #294663;
+      }
+      #O_o a:link, #O_o a:visited {
+        color: #b4c9dd;
+        border-bottom: #b4c9dd;
+        display: block;
+        padding: 8px;
+        text-decoration: none;
+      }
+      #O_o a:hover, #O_o a:active {
+        color: #fff;
+        border-bottom: #fff;
+        text-decoration: none;
+      }
+      @media only screen and (max-width: 620px), only screen and (max-device-width: 620px) {
+        #wrapper {
+          width: 90%;
+        }
+        legend {
+          font-size: 24px;
+          font-weight: 500;
+        }
+      }

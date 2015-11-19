@@ -1,0 +1,28 @@
+<!-- The edit graph view -->
+<section  data-ng-controller="GraphsController" data-ng-init="findOne()">
+	<h1>Edit Graph</h1>
+	<!-- The edited graph form -->
+    <a href="/#!/">Home</a>
+	<form data-ng-submit="update()" novalidate>
+		<div>
+			<label for="title">Title</label>
+			<div>
+				<input class="form-control" type="text" data-ng-model="graph.title" id="title" placeholder="Title" required>
+			</div>
+		</div>
+		<div>
+			<label for="content">Content</label>
+			<div>
+				<textarea class="form-control" data-ng-model="graph.content" id="content" cols="30" rows="10" placeholder="Content"></textarea>
+			</div>
+		</div>
+		<div>
+			<input class="form-control btn btn-info"  type="submit" value="Update">
+		</div>
+		<!-- The error message element -->
+		<div data-ng-show="error">
+			<strong data-ng-bind="error"></strong>
+		</div>
+	</form>
+	</div>
+</section>

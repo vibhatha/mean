@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org">
+<head>
+	<!-- Use the 'title' property to render a page title  -->
+	<title><%= title %></title>
+    
+    <!--UI Imports START-->
+    
+    <meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		
+    <link rel="stylesheet" type="text/css" href="/css/default.css" />
+	<link rel="stylesheet" type="text/css" href="/css/component.css" />
+    <link rel="stylesheet" type="text/css" href="/css/signin.css" />
+	<!--<script src="/js/modernizr.custom.js"></script>-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+    
+    <!--UI Imports END-->
+    
+    
+   
+</head>
+<body ng-controller="ExampleController" class="cbp-spmenu-push" >
+          
+   	<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+			<h3>Menu</h3>
+			 <a data-ng-show="authentication.user" href="/#!/powers">List Powers</a>
+             <a data-ng-show="authentication.user" href="/#!/powers/create">Create Power</a>
+
+			<a href="#">Zucchini garlic</a>
+			<a href="#">Catsear azuki bean</a>
+			<a href="#">Dandelion bunya</a>
+			<a href="#">Rutabaga</a>
+		</nav> 
+    <div  class="container">
+			<header class="clearfix">
+				<span>IPOWER</span>
+                <span><button class="btn-primary" id="showLeftPush">#</button></span>
+				<h1>Intelligent Power Management System</h1>
+               
+                
+				<nav>
+                    <h2 data-ng-bind="authentication.user.fullName" ></h2>
+					<h3 data-ng-show="authentication.user"> Sign Out</h3> 
+                    <a data-ng-show="authentication.user" href="/signout">Signout</a>
+                    <h3 data-ng-show="!authentication.user">Sign Up</h3>
+                     <a data-ng-show="!authentication.user" href="/signup">Signup</a></span>
+                    <h3 data-ng-show="!authentication.user">Sign In</h3>
+                     <a data-ng-show="!authentication.user" href="/signin">Signin</a></span>
+				</nav>
+        
+                <nav>
+            
+    
+                        <button class="btn-danger">Sign Up</button>
+    </nav>            
+    
+			</header>
+			<div class="main">
+				<section>
+					
+				</section>
+				<section class="buttonset">
+					<section class="container"  ng-view>
+    
+    </section>
+					<!-- Class "cbp-spmenu-open" gets applied to menu and "cbp-spmenu-push-toleft" or "cbp-spmenu-push-toright" to the body -->
+					
+					<!--<button id="showRightPush">Show/Hide Right Push Menu</button>-->
+				</section>
+			</div>
+		</div>
+		<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
+		<script src="js/classie.js"></script>
+		<script>
+			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				menuRight = document.getElementById( 'cbp-spmenu-s2' ),
+				menuTop = document.getElementById( 'cbp-spmenu-s3' ),
+				menuBottom = document.getElementById( 'cbp-spmenu-s4' ),
+				showLeft = document.getElementById( 'showLeft' ),
+				showRight = document.getElementById( 'showRight' ),
+				showTop = document.getElementById( 'showTop' ),
+				showBottom = document.getElementById( 'showBottom' ),
+				showLeftPush = document.getElementById( 'showLeftPush' ),
+				showRightPush = document.getElementById( 'showRightPush' ),
+				body = document.body;
+
+		
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( body, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+				disableOther( 'showLeftPush' );
+			};
+			
+
+			function disableOther( button ) {
+			
+				if( button !== 'showLeftPush' ) {
+					classie.toggle( showLeftPush, 'disabled' );
+				}
+				
+			}
+		</script>
+    
+    
+    
+    
+    
+    
+    
+  <!--  <div ng-controller="ExampleController" class="slide-menu horizontal-open">
+ 
+  <div class="menu-panels">
+    <div   id="Panel1" class="menu-panel">
+      <h1 data-ng-bind="authentication.user.fullName">Hi </h1>
+        <span data-ng-bind="authentication.user.fullName"></span>
+        <span data-ng-show="authentication.user"><a href="/signout">Signout</a></span>
+        <span data-ng-show="authentication.user"><a href="/">Home</a></span>
+        <span data-ng-show="!authentication.user"><a href="/signup">Signup</a></span>
+        <span data-ng-show="!authentication.user"><a href="/signin">Signin</a></span>
+    </div>
+    <div  id="Panel2" class="menu-panel">
+      <h1>Panel 2 Contents</h1>
+                  
+        <a data-ng-show="authentication.user" href="/#!/powers">List Powers</a>
+           <a data-ng-show="authentication.user" href="/#!/powers/create">Create Power</a>
+
+    </div>
+    <div  id="Panel3" class="menu-panel">
+      <h1>Panel 3 Contents</h1>
+					<a data-ng-show="authentication.user" href="/#!/smartplugs">List Smart Plugs</a>
+					<a data-ng-show="authentication.user" href="/#!/smartplugs/create">Create Smart Plug</a>
+                   
+                  </div>
+    </div>
+    <div id="Panel4" class="menu-panel">
+      <h1>Panel 4 Contents</h1>
+         <a data-ng-show="authentication.user" href="/#!/devices">List Devices</a>
+         <a data-ng-show="authentication.user" href="/#!/devices/create">Create Device</a>
+    </div>
+    <div id="Panel5" class="menu-panel">
+      <h1>Panel 5 Contents</h1>
+             <a data-ng-show="authentication.user" href="/#!/articles">List Articles</a>
+					<a data-ng-show="authentication.user" href="/#!/articles/create">Create Article</a>
+        <h2>Hey</h2>
+    </div>
+  </div>
+</div>-->
+
+    
+    
+	<!-- Render AngularJS views  -->
+	
+  
+
+   
+
+	<!-- Render the user object -->
+	<script type="text/javascript">
+		window.user = <%- user || 'null' %>;
+	</script>
+    
+    <!--Styling START-->
+    
+    
+    
+    <!--Styling END-->
+    
+    
+    
+    
+    
+	
+	<!-- Load local libraries -->
+	<script type="text/javascript" src="/lib/angular/angular.js"></script>
+	<script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
+	<script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>
+	
+	<!-- Load the articles module -->
+	<script type="text/javascript" src="/articles/articles.client.module.js"></script>
+	<script type="text/javascript" src="/articles/controllers/articles.client.controller.js"></script>
+	<script type="text/javascript" src="/articles/services/articles.client.service.js"></script>
+	<script type="text/javascript" src="/articles/config/articles.client.routes.js"></script>
+    
+    <!-- Load the smartplug module -->
+    <script type="text/javascript" src="/smartplugs/smartplugs.client.module.js"></script>
+	<script type="text/javascript" src="/smartplugs/controllers/smartplugs.client.controller.js"></script>
+	<script type="text/javascript" src="/smartplugs/services/smartplugs.client.service.js"></script>
+	<script type="text/javascript" src="/smartplugs/config/smartplugs.client.routes.js"></script>
+    
+     <!-- Load the device module -->
+    <script type="text/javascript" src="/devices/devices.client.module.js"></script>
+	<script type="text/javascript" src="/devices/controllers/devices.client.controller.js"></script>
+	<script type="text/javascript" src="/devices/services/devices.client.service.js"></script>
+	<script type="text/javascript" src="/devices/config/devices.client.routes.js"></script>
+    
+    <!-- Load the Power module -->
+    <script type="text/javascript" src="/powers/powers.client.module.js"></script>
+	<script type="text/javascript" src="/powers/controllers/powers.client.controller.js"></script>
+	<script type="text/javascript" src="/powers/services/powers.client.service.js"></script>
+	<script type="text/javascript" src="/powers/config/powers.client.routes.js"></script>
+
+	<!-- Load the example module -->
+	<script type="text/javascript" src="/example/example.client.module.js"></script>
+	<script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>
+	<script type="text/javascript" src="/example/config/example.client.routes.js"></script>
+
+	<!-- Load the users module -->
+	<script type="text/javascript" src="/users/users.client.module.js"></script>
+	<script type="text/javascript" src="/users/services/authentication.client.service.js"></script>
+
+	<!-- Bootstrap AngularJS application -->
+	<script type="text/javascript" src="/application.js"></script>
+</body>
+</html>

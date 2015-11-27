@@ -1,0 +1,17 @@
+<!-- The article view -->
+<section data-ng-controller="PowersController" data-ng-init="findOne()">
+    <a href="/#!/">Home</a>
+	<h1 data-ng-bind="power.id"></h1>
+	<!-- Show the editing buttons to the article creator -->
+	<div data-ng-show="authentication.user._id == power.creator._id">
+		<a href="/#!/powers/{{power._id}}/edit">edit</a>
+		<a href="/#!/" data-ng-click="delete();">delete</a>
+	</div>
+	<small>
+		<em>Posted on</em>
+		<em data-ng-bind="power.created | date:'mediumDate'"></em>
+		<em>by</em>
+		<em data-ng-bind="power.creator.fullName"></em>
+	</small>
+	<p data-ng-bind="power.pid"></p>
+</section>

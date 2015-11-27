@@ -1,0 +1,18 @@
+<!-- The article view -->
+<section data-ng-controller="GraphsController" data-ng-init="findOne()">
+     <a href="/#!/">Home</a>
+	<h1 data-ng-bind="graph.title"></h1>
+   
+	<!-- Show the editing buttons to the graph creator -->
+	<div data-ng-show="authentication.user._id == graph.creator._id">
+		<a href="/#!/graphs/{{graph._id}}/edit">edit</a>
+		<a href="/#!/" data-ng-click="delete();">delete</a>
+	</div>
+	<small>
+		<em>Posted on</em>
+		<em data-ng-bind="graph.created | date:'mediumDate'"></em>
+		<em>by</em>
+		<em data-ng-bind="graph.creator.fullName"></em>
+	</small>
+	<p data-ng-bind="graph.content"></p>
+</section>

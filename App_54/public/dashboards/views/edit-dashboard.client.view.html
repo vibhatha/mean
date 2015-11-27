@@ -1,0 +1,46 @@
+<!-- The edit article view -->
+<section data-ng-controller="DashboardsController" data-ng-init="findOne()">
+	<h1>Edit Article</h1>
+    <a href="/#!/">Home</a>
+	<!-- The edited article form -->
+	<form data-ng-submit="update()" novalidate>
+		<div>
+			<label for="pid">Dashboard</label>
+			<div>
+				<input class="form-control" type="text" data-ng-model="dashboard.pid" id="pid" placeholder="Dashboard ID" required>
+			</div>
+		</div>
+		<div>
+			<label for="consumption">Name</label>
+			<div>
+				<input class="form-control" type="text" data-ng-model="dashboard.consumption" id="consumption" placeholder="Consumption"/>
+			</div>
+		</div>
+       
+         <div>
+			<label for="devices">Devices</label>
+			<div>
+                <select class="form-control" data-ng-model="dashboard.devices" ng-options="sm._id as sm.name for sm in deviceList"></select>
+				
+			</div>
+		</div>
+        
+          <div>
+			<label for="smartplugs">Smart Plug</label>
+			<div>
+                <select class="form-control" data-ng-model="dashboard.smartplugs" ng-options="sm._id as sm.name for sm in smartplugList"></select>
+				
+			</div>
+		</div>
+        
+        
+		<div>
+			<input class="form-control btn btn-info" type="submit" value="Update">
+		</div>
+		<!-- The error message element -->
+		<div data-ng-show="error">
+			<strong data-ng-bind="error"></strong>
+		</div>
+	</form>
+	</div>
+</section>

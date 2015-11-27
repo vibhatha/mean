@@ -1,0 +1,145 @@
+   
+<div layout="row">
+    
+  <div  class="purple" flex="30" flex-offset="20">
+      <md-switch ng-model="switchdata.cb1" aria-label="Switch 1">
+     
+  </md-switch>
+   <h3>Item: {{ switchdata.cb1 }}</h3>
+      
+      <!--List Items Start-->
+      
+    <md-content md-scroll-y ng-show="switchdata.cb1" class="green">
+    <md-list  class="listdemoBasicUsage">
+      <!--<md-subheader class="md-no-sticky">3 line item</md-subheader>-->
+   
+        <md-list-item  class="md-3-line" ng-repeat="item in todos">
+            
+        
+        
+        <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+        <div class="md-list-item-text" layout="column">
+          <h3>{{ item.who }}</h3>
+          <h4>{{ item.what }}</h4>
+         
+        </div>
+          <md-divider ></md-divider>
+            
+            
+      </md-list-item>
+      
+      
+     
+    </md-list>
+  </md-content>
+      
+      
+      
+         <!--List Items End-->
+      
+      
+      <!--List Item Smart Plugs Start-->
+      
+      <md-content ng-show="!switchdata.cb1" class="yellow">
+    <md-list class="listdemoBasicUsage">
+      <!--<md-subheader class="md-no-sticky">3 line item</md-subheader>-->
+      <md-list-item class="md-3-line" ng-repeat="item in todos">
+        <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+        <div class="md-list-item-text" layout="column">
+          <h3>{{ item.who }}</h3>
+          <h4>{{ item.what }}</h4>
+         
+        </div>
+          <md-divider ></md-divider>
+      </md-list-item>
+      
+      
+     
+    </md-list>
+  </md-content>
+      
+  </div>
+  <div  class="blue" flex="70">
+    [flex]
+  </div>
+</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<!--<div layout="row">
+  <div class="purple" flex>First item in row</div>
+  <div class="green" flex>Second item in row</div>
+  <div class="yellow" flex>Second item in row</div>
+</div>
+<div layout="column">
+  <div class="red" flex>First item in column</div>
+  <div class="blue"  flex>Second item in column</div>
+</div>    -->
+    
+    
+    
+    <!--<md-grid-list
+        md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
+        md-row-height-gt-md="1:1" md-row-height="2:2"
+        md-gutter="12px" md-gutter-gt-sm="8px" >
+    <md-grid-tile class="gray"
+        md-rowspan="3" md-colspan="2" md-colspan-sm="1">
+      <md-grid-tile-footer>
+        <h3>#1: (3r x 2c)</h3>
+      </md-grid-tile-footer>
+    </md-grid-tile>
+    <md-grid-tile class="green">
+      <md-grid-tile-footer>
+        <h3>#2: (1r x 1c)</h3>
+      </md-grid-tile-footer>
+    </md-grid-tile>
+    <md-grid-tile class="yellow">
+      <md-grid-tile-footer>
+        <h3>#3: (1r x 1c)</h3>
+      </md-grid-tile-footer>
+    </md-grid-tile>
+    <md-grid-tile class="blue"
+        md-rowspan="2">
+      <md-grid-tile-footer>
+        <h3>#4: (2r x 1c)</h3>
+      </md-grid-tile-footer>
+    </md-grid-tile>
+    <md-grid-tile class="red"
+        md-rowspan="2" md-colspan="2" md-colspan-sm="1">
+      <md-grid-tile-footer>
+        <h3>#5: (2r x 2c)</h3>
+      </md-grid-tile-footer>
+    </md-grid-tile>
+    <md-grid-tile class="green"
+        md-rowspan="2" >
+      <md-grid-tile-footer>
+        <h3>#6: (2r x 1c)</h3>
+      </md-grid-tile-footer>
+    </md-grid-tile>
+  </md-grid-list>-->

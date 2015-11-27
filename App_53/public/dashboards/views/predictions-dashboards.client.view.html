@@ -1,0 +1,343 @@
+<section class="gridListdemoBasicUsage gray tabsdemoStaticTabs dialogdemoBasicUsage" data-ng-controller="DashboardsController" data-ng-init="find()">
+
+      <div class="row">
+    
+        <div class="col-sm-8">
+        
+        <md-button ng-href="/#!/dashboards/" class="md-primary md-raised md-hue-2" ng-click="">Basic</md-button>
+      
+        </div>   
+        
+       <a data-ng-href="#!/dashboards/identity/678">View</a>
+        
+        
+        
+        <div class="col-sm-4">
+        
+        </div>
+    
+    
+    </div>
+    
+    
+       
+    <md-toolbar class="md-warn">
+    <div class="md-toolbar-tools">
+        <h2 class="md-flex"><md-button class="md-raised md-accent" ng-click="showPredictionTab()">Optimization</md-button><md-button class="md-raised md-primary" ng-click="showPatternTab()">Patterns</md-button><md-button class="md-raised md-primary md-hue-1" ng-click="showCostPredictionTab()">Prediction</md-button></h2>
+    </div>
+  </md-toolbar>
+  <md-content ng-show="prediction"  flex layout-padding>
+      
+       <div layout="row">
+              
+           <div class="purple" flex="20">
+               
+               <md-input-container flex>
+                  <label>Search</label>
+                  <input type="text" ng-model="searchDevice"/>
+                 
+               </md-input-container>
+               
+               <ul ng-repeat="device in deviceList | filter:searchDevice | limitTo:10">
+               
+                  <md-button ng-click="predictionOfUsagePerDevice(device.name)" class="md-raised md-warn">{{device.name}}</md-button>
+               
+                   
+               
+               </ul>
+               
+              
+              
+               
+                 
+                   
+               
+               
+               
+               
+           </div>
+           
+           
+           <div class="green" flex="80">
+               {{ searchDevice}}
+               
+               
+                 <!--<h1>Select text file</h1>
+    <input type="file" on-read-file="showContent($fileContent)" />
+    <div ng-if="content">
+        <h2>File content is:</h2>
+        <pre>{{ content }}</pre>
+    </div>
+               -->
+<!--<div layout="row">
+    
+    <div ng-click="" class="prediction4-detail" flex>
+    
+        <h1>Hour</h1>
+    
+    </div>
+    
+    <div ng-click="" class="prediction5-detail" flex>
+    
+        <h1>Week</h1>
+    
+    </div>
+    
+    
+    <div ng-click="" class="prediction6-detail" flex>
+     
+       <h1>Month</h1>
+    
+    </div>
+    
+               
+</div>  -->    
+    
+
+<div layout="row">
+  <div class="col-sm-2 prediction1-detail div-clear-right" flex>
+     <h2>Peak Use :{{usage_in_peak}} </h2>
+  </div>
+  <div class="col-sm-2 prediction-detail div-clear-right" flex>
+     <h2>Off-Peak Use : {{usage_in_off_peak}} </h2>
+  </div>
+  
+</div>
+
+               
+ 
+<div  layout="row">
+  <div class="col-sm-2 prediction2-detail div-clear-right" flex>
+     <h2>Peak Use :{{usage_in_peak}} </h2>
+  </div>
+  <div class="col-sm-2 prediction3-detail div-clear-right" flex>
+     <h2>Off-Peak Use : {{usage_in_off_peak}} </h2>
+  </div>
+  
+</div>              
+          
+ 
+               
+<div layout="row">
+    
+    <div ng-click="" class="prediction4-detail" flex>
+    
+        <h1>Shift Possible : {{shifting_possible}}</h1>
+        <h4> Peak Capacity Remainder: {{peak_capacity_remainder}}</h2>
+        <h4> Off-Peak Capacity Remainder: {{off_peak_capacity_remainder}}</h2>
+    
+    </div>
+    
+    <div ng-show="shifting_possible" ng-click="" class="prediction5-detail" flex>
+    
+        <h1>Cost Saving : {{cost_saving}} </h1>
+    
+    </div>
+    
+    
+  
+    
+               
+</div>               
+ 
+              
+               
+   
+                        
+
+
+         
+         
+         
+               
+               
+           </div>
+           
+       </div>
+   
+  </md-content>
+    
+    
+
+      <md-content ng-show="pattern" flex layout-padding>
+      
+       <div layout="row">
+              
+           <div class="purple" flex="20">
+               
+               <md-input-container flex>
+                  <label>Search</label>
+                  <input type="text" ng-model="searchDevice"/>
+                 
+               </md-input-container>
+               
+               <ul ng-repeat="device in deviceList | filter:searchDevice | limitTo:10">
+               
+                  <md-button ng-click="getAllPatternData(device.name)" class="md-raised md-warn">{{device.name}}</md-button>
+               
+                   
+               
+               </ul>
+               
+               
+              
+               
+                 
+                   
+               
+               
+               
+               
+           </div>
+           
+           
+           <div class="green" flex="80">
+               {{ searchDevice}}
+               
+               
+                 <!--<h1>Select text file</h1>
+    <input type="file" on-read-file="showContent($fileContent)" />
+    <div ng-if="content">
+        <h2>File content is:</h2>
+        <pre>{{ content }}</pre>
+    </div>
+               -->
+               
+    
+        <div  ng-if="hour_data_per_device">
+        <h2 ng-show="showHourDevicePatternGraph">Per Device 24 Hours Patterns</h2>       
+         <div ng-show="showHourDevicePatternGraph" fusioncharts
+    width="600" 
+    height="400"
+    type="msline"
+    chart="{{attrsPredictionHour1}}"
+    categories="{{categoriesPredictionHour}}"
+    dataset="{{hour_data_per_device}}"
+    ></div>      
+               
+    </div>           
+               
+               
+     <div  ng-if="month_data_per_device">
+        <h2 ng-show="showMonthDevicePatternGraph">Per Device Month Patterns</h2>       
+         <div ng-show="showMonthDevicePatternGraph" fusioncharts
+    width="600" 
+    height="400"
+    type="msline"
+    chart="{{attrsPredictionMonth1}}"
+    categories="{{categoriesPredictionMonth}}"
+    dataset="{{month_data_per_device}}"
+    ></div>      
+               
+    </div>                      
+               
+               
+     <div ng-if="hour_data">
+        <h2>All Patterns</h2>
+      
+        <!-- <ul ng-repeat="device in hour_data">
+             <li>{{device.seriesname}}  {{device.data}}</li>
+         </ul>-->
+         
+    <div fusioncharts
+    width="600" 
+    height="400"
+    type="msline"
+    chart="{{attrsPredictionHour1}}"
+    categories="{{categoriesPredictionHour}}"
+    dataset="{{hour_data}}"
+    ></div>
+         
+    </div>         
+
+
+
+         
+         
+         
+               
+               
+           </div>
+           
+       </div>
+   
+  </md-content>
+    
+    
+    
+    
+     <md-content ng-show="cost_prediction"  flex layout-padding>
+      
+       <div layout="row">
+              
+           <div class="purple" flex="20">
+               
+               <md-input-container flex>
+                  <label>Search</label>
+                  <input type="text" ng-model="searchDevice"/>
+                 
+               </md-input-container>
+               
+               <ul ng-repeat="device in deviceList | filter:searchDevice | limitTo:10">
+               
+                  <md-button ng-click="predictionOfUsagePerDevice(device.name)" class="md-raised md-warn">{{device.name}}</md-button>
+               
+                   
+               
+               </ul>
+               
+
+           </div>
+           
+           
+           <div class="green" flex="80">
+               {{ searchDevice}}
+    <div>
+               
+               
+    <div fusioncharts
+    width="600" 
+    height="400"
+    type="msline"
+    chart="{{attrsPredictionCostOfYear1}}"
+    categories="{{categoriesPredictionCostOfYear}}"
+    dataset="{{dataset_cost_past_years}}"
+    ></div>
+               
+    </div>           
+               
+  <div>
+     <h3>Cost Prediction for Year 2014</h3>          
+       <div fusioncharts
+    width="600" 
+    height="400"
+    type="msline"
+    chart="{{attrsPredictionCostOfYear2014}}"
+    categories="{{categoriesPredictionCostOfYear2014}}"
+    dataset="{{dataset_cost_past_years2014}}"
+    ></div>
+      
+               
+   </div>
+
+         
+               
+               
+           </div>
+           
+       </div>
+   
+  </md-content>
+    
+    
+    
+
+</section>
+
+
+
+
+
+
+
+
